@@ -87,6 +87,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shared\SharedStuffTest.cs" />
     <Compile Include="WebApi\Controllers\HomeControllerTest.cs" />
     <Compile Include="WebApi\Controllers\ValuesControllerTest.cs" />
     <Compile Include="Program.cs" />
