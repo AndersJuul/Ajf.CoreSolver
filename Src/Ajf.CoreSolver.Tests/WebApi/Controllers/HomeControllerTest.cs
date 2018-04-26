@@ -1,14 +1,13 @@
-﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ajf.CoreSolver.WebApi;
-using Ajf.CoreSolver.WebApi.Controllers;
+﻿using Ajf.CoreSolver.WebApi.Controllers;
+using NUnit.Framework;
+using System.Web.Mvc;
 
 namespace Ajf.CoreSolver.WebApi.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             // Arrange
