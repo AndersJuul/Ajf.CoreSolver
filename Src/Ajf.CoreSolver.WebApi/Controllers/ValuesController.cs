@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,12 +13,16 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
+            Log.Logger.Debug("Get() called");
+
             return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         public string Get(int id)
         {
+            Log.Logger.Debug("Get(int id) called");
+
             return "value";
         }
 
