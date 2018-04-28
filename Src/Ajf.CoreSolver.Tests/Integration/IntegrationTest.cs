@@ -46,7 +46,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
             var client = new RestClient("http://"+target+"/Ajf.CoreSolver.WebApi/");
             // client.Authenticator = new HttpBasicAuthenticator(username, password);
 
-            var request = new RestRequest("api/values", Method.GET);
+            var request = new RestRequest("api/calculation", Method.GET);
             //request.AddParameter("name", "value"); // adds to POST or URL querystring based on Method
             //request.AddUrlSegment("id", "123"); // replaces matching token in request.Resource
 

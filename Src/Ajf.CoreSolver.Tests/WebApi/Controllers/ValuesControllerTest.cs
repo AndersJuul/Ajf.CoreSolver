@@ -12,7 +12,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
         public void Get()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CalculationController controller = new CalculationController();
 
             // Act
             IEnumerable<string> result = controller.Get();
@@ -28,7 +28,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
         public void GetById()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CalculationController controller = new CalculationController();
 
             // Act
             string result = controller.Get(5);
@@ -41,7 +41,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
         public void Post()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CalculationController controller = new CalculationController();
 
             // Act
             controller.Post("value");
@@ -53,7 +53,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
         public void Put()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CalculationController controller = new CalculationController();
 
             // Act
             controller.Put(5, "value");
@@ -65,7 +65,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CalculationController controller = new CalculationController();
 
             // Act
             controller.Delete(5);

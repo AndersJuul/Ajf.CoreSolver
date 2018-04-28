@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace Ajf.CoreSolver.WebApi.Controllers
 {
-    public class ValuesController : ApiController
+    public class CalculationController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
