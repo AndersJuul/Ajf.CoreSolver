@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ajf.CoreSolver.Models
 {
-    class Program
+    public class CalculationRequest
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }

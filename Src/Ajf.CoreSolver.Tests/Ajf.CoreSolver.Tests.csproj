@@ -110,6 +110,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ajf.CoreSolver.Models\Ajf.CoreSolver.Models.csproj">
+      <Project>{F657D470-88DB-45CF-8041-2B993DD46FD6}</Project>
+      <Name>Ajf.CoreSolver.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ajf.CoreSolver.WebApi\Ajf.CoreSolver.WebApi.csproj">
       <Project>{d3c6625b-eff3-4ad5-a81f-c73ae751972c}</Project>
       <Name>Ajf.CoreSolver.WebApi</Name>

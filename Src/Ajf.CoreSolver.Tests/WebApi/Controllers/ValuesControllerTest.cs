@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.WebApi.Controllers;
 using NUnit.Framework;
 
@@ -44,7 +45,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
             CalculationController controller = new CalculationController();
 
             // Act
-            controller.Post("value");
+            controller.Post(new CalculationRequest());
 
             // Assert
         }

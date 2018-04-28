@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Ajf.CoreSolver.Models;
+using NUnit.Framework;
 using RestSharp;
 
 namespace Ajf.CoreSolver.Tests.Integration
@@ -12,10 +13,10 @@ namespace Ajf.CoreSolver.Tests.Integration
         {
             // Arrange
             var client = GetRestClient();
-            var request = new RestRequest("api/calculation", Method.GET);
+            var request = new RestRequest("api/calculation", Method.POST);
 
             // Act
-            var response = client.Execute(request);
+            var response = client.Execute<CalculationResponse>(request);
             var content = response.Content; // raw content as string
 
             // Assert
