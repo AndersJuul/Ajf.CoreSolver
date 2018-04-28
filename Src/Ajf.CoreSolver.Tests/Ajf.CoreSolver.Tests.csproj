@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\BaseIntegrationTest.cs" />
     <Compile Include="Integration\IntegrationTest.cs" />
     <Compile Include="Shared\SharedStuffTest.cs" />
     <Compile Include="WebApi\Controllers\ValuesControllerTest.cs" />
