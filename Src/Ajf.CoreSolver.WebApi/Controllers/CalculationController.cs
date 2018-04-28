@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using Ajf.CoreSolver.Models;
 
 namespace Ajf.CoreSolver.WebApi.Controllers
@@ -28,9 +29,11 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]CalculationRequest calculationRequest)
+        public IHttpActionResult Post([FromBody]CalculationRequest calculationRequest)
         {
             Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
+
+            return Ok(new CalculationResponse());
         }
 
         // PUT api/values/5

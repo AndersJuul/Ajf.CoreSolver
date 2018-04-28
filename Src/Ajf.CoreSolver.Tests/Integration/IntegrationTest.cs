@@ -13,7 +13,11 @@ namespace Ajf.CoreSolver.Tests.Integration
         {
             // Arrange
             var client = GetRestClient();
-            var request = new RestRequest("api/calculation", Method.POST);
+            var request = new RestRequest("api/calculation", Method.POST)
+            {
+                RequestFormat = DataFormat.Json
+            };
+            request.AddBody(new CalculationRequest()); 
 
             // Act
             var response = client.Execute<CalculationResponse>(request);
