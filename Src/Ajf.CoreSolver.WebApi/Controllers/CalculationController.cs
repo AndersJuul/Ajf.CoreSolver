@@ -1,27 +1,29 @@
-﻿using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System;
 using System.Web.Http;
-using System.Web.Http.Results;
 using Ajf.CoreSolver.Models;
+using Serilog;
+using Serilog.Context;
 
 namespace Ajf.CoreSolver.WebApi.Controllers
 {
     public class CalculationController : ApiController
     {
-        public IHttpActionResult Post([FromBody]CalculationRequest calculationRequest)
+        public IHttpActionResult Post([FromBody] CalculationRequest calculationRequest)
         {
-            Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
+            var transactionId = Guid.NewGuid();
+            using (LogContext.PushProperty("TransactionId", transactionId))
+            {
+                Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
 
-            var calculationResponse = new CalculationResponse();
+                var calculationResponse = new CalculationResponse
+                {
+                    TransactionId = transactionId
+                };
 
-            Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
+                Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
 
-            return Ok(calculationResponse);
+                return Ok(calculationResponse);
+            }
         }
-
     }
 }
