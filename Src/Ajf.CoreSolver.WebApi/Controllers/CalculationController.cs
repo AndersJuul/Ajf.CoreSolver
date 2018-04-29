@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
 using Serilog;
@@ -16,7 +17,8 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         /// </summary>
         /// <param name="calculationRequest">The calculation to be made</param>
         /// <returns></returns>
-        /// <response code="200"></response>
+        /// <response code="200">Returned with </response>
+        /// <response code="400">Returned for technical (unanticipated) errors.</response>
         public IHttpActionResult Post([FromBody] CalculationRequest calculationRequest)
         {
             // transaction id to trace this calculation across processes.
