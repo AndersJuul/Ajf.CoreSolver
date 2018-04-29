@@ -7,30 +7,41 @@ using Serilog.Context;
 namespace Ajf.CoreSolver.WebApi.Controllers
 {
     /// <summary>
-    /// This is!
+    ///     This is!
     /// </summary>
     public class CalculationController : ApiController
     {
         /// <summary>
-        /// And this is too!
+        ///     Receives a calculationRequest and puts it in queue to be calculated.
         /// </summary>
-        /// <param name="calculationRequest"></param>
+        /// <param name="calculationRequest">The calculation to be made</param>
         /// <returns></returns>
+        /// <response code="200"></response>
         public IHttpActionResult Post([FromBody] CalculationRequest calculationRequest)
         {
+            // transaction id to trace this calculation across processes.
             var transactionId = Guid.NewGuid();
+
             using (LogContext.PushProperty("TransactionId", transactionId))
             {
-                Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
-
-                var calculationResponse = new CalculationResponse
+                try
                 {
-                    TransactionId = transactionId
-                };
+                    Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
 
-                Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
+                    var calculationResponse = new CalculationResponse
+                    {
+                        TransactionId = transactionId
+                    };
 
-                return Ok(calculationResponse);
+                    Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
+
+                    return Ok(calculationResponse);
+                }
+                catch (Exception e)
+                {
+                    Log.Logger.Error(e, "Calculation.Post");
+                    return BadRequest(transactionId.ToString());
+                }
             }
         }
     }
