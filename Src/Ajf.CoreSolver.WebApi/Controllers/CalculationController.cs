@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Shared;
 using Serilog;
 using Serilog.Context;
 
@@ -12,6 +15,13 @@ namespace Ajf.CoreSolver.WebApi.Controllers
     /// </summary>
     public class CalculationController : ApiController
     {
+        private readonly ICalculationRequestValidator _calculationRequestValidator;
+
+        public CalculationController(ICalculationRequestValidator calculationRequestValidator)
+        {
+            _calculationRequestValidator = calculationRequestValidator;
+        }
+
         /// <summary>
         ///     Receives a calculationRequest and puts it in queue to be calculated.
         /// </summary>
@@ -30,6 +40,25 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                 {
                     Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
 
+                    // ------------
+                    // Validate input, return description of the problem if failing.
+                    var validationResult =_calculationRequestValidator.Validate(calculationRequest);
+                    if (!validationResult.IsValid)
+                    {
+                        return Content(HttpStatusCode.BadRequest, validationResult.ToString());
+                    }
+
+                    // ------------
+                    // Insert the request in database to keep track of calculations
+                    // ...
+
+                    // ------------
+                    // Add request to queue and let the queue processor handle it.
+                    // ...
+
+                    // ------------
+                    // Return a response indicating success and with transaction id
+                    //   for when the caller wish to query results.
                     var calculationResponse = new CalculationResponse
                     {
                         TransactionId = transactionId

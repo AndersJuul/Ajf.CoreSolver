@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Ajf.CoreSolver.Models;
+﻿using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.WebApi.Controllers;
 using NUnit.Framework;
 
-namespace Ajf.CoreSolver.WebApi.Tests.Controllers
+namespace Ajf.CoreSolver.Tests.WebApi.Controllers
 {
     [TestFixture]
     public class ValuesControllerTest
@@ -42,7 +40,7 @@ namespace Ajf.CoreSolver.WebApi.Tests.Controllers
         public void Post()
         {
             // Arrange
-            CalculationController controller = new CalculationController();
+            var controller = new CalculationController(null);
 
             // Act
             controller.Post(new CalculationRequest());
