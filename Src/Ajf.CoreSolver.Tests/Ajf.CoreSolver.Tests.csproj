@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseIntegrationTest.cs" />
+    <Compile Include="Base\BaseTest.cs" />
     <Compile Include="Integration\IntegrationTest.cs" />
     <Compile Include="Base\BaseUnitTest.cs" />
     <Compile Include="Shared\CalculationRequestValidatorTest.cs" />

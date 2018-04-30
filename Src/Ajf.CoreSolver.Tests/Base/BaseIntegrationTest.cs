@@ -3,7 +3,7 @@ using RestSharp;
 
 namespace Ajf.CoreSolver.Tests.Base
 {
-    public abstract class BaseIntegrationTest
+    public abstract class BaseIntegrationTest:BaseTest
     {
         private string getTarget()
         {

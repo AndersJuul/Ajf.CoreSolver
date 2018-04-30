@@ -3,6 +3,7 @@ using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Tests.Base;
 using NUnit.Framework;
 using RestSharp;
+using AutoFixture;
 
 namespace Ajf.CoreSolver.Tests.Integration
 {
@@ -19,7 +20,7 @@ namespace Ajf.CoreSolver.Tests.Integration
             {
                 RequestFormat = DataFormat.Json
             };
-            request.AddBody(new CalculationRequest()); 
+            request.AddBody(Fixture.Build< CalculationRequest>().Create()); 
 
             // Act
             var response = client.Execute<CalculationResponse>(request);
