@@ -25,8 +25,9 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         /// </summary>
         /// <param name="calculationRequest">The calculation to be made</param>
         /// <returns></returns>
-        /// <response code="200">Returned with </response>
+        /// <response code="200">Returned with CalculationResponse for success</response>
         /// <response code="400">Returned for technical (unanticipated) errors.</response>
+        /// <response code="400">Returned for validation errors; validation feedback in response (for debug).</response>
         public IHttpActionResult Post([FromBody] CalculationRequest calculationRequest)
         {
             // transaction id to trace this calculation across processes.
