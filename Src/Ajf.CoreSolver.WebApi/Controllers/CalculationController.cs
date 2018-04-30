@@ -15,6 +15,10 @@ namespace Ajf.CoreSolver.WebApi.Controllers
     {
         private readonly ICalculationRequestValidator _calculationRequestValidator;
 
+        /// <summary>
+        /// Entry for new calculations and getting status on calculations requested
+        /// </summary>
+        /// <param name="calculationRequestValidator"></param>
         public CalculationController(ICalculationRequestValidator calculationRequestValidator)
         {
             _calculationRequestValidator = calculationRequestValidator;

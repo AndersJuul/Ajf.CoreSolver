@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.CoreSolver.Tests", "Ajf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.CoreSolver.Shared", "Ajf.CoreSolver.Shared\Ajf.CoreSolver.Shared.csproj", "{2C703F6D-89CB-4B1E-A3C9-96D23E029D4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.CoreSolver.Migrations", "Ajf.CoreSolver.Migrations\Ajf.CoreSolver.Migrations.csproj", "{1B318E7C-C3AA-4471-A1A3-649B75A81C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ajf.CoreSolver.DbModels", "Ajf.CoreSolver.DbModels\Ajf.CoreSolver.DbModels.csproj", "{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{2C703F6D-89CB-4B1E-A3C9-96D23E029D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C703F6D-89CB-4B1E-A3C9-96D23E029D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C703F6D-89CB-4B1E-A3C9-96D23E029D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B318E7C-C3AA-4471-A1A3-649B75A81C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B318E7C-C3AA-4471-A1A3-649B75A81C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B318E7C-C3AA-4471-A1A3-649B75A81C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B318E7C-C3AA-4471-A1A3-649B75A81C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

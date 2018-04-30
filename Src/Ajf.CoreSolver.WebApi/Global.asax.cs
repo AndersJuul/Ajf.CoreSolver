@@ -16,7 +16,7 @@ namespace Ajf.CoreSolver.WebApi
                 .Debug()
                 .CreateLogger();
 
-            Log.Logger.Information("Starting WebApi - Version is... " + ConfigurationManager.AppSettings["ReleaseNumber"]);
+            Log.Logger.Information("Starting WebApi");
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
