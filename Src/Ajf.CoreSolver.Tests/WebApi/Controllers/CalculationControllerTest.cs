@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Web.Http.Results;
+﻿using System.Web.Http.Results;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Shared;
 using Ajf.CoreSolver.Tests.Base;
@@ -11,7 +10,7 @@ using Rhino.Mocks;
 namespace Ajf.CoreSolver.Tests.WebApi.Controllers
 {
     [TestFixture]
-    public class ValuesControllerTest:BaseUnitTest
+    public class CalculationControllerTest : BaseUnitTest
     {
         //[Test]
         //public void Get()
@@ -55,14 +54,17 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
             calculationRequestValidator
                 .Stub(x => x.Validate(calculationRequest))
                 .Return(validationResult);
-            var controller = new CalculationController(calculationRequestValidator);
+            var calculationRepository = Fixture
+                .Build<CalculationRepository>()
+                .Create();
+
+            var controller = new CalculationController(calculationRequestValidator, calculationRepository);
 
             // Act
             var response = controller.Post(calculationRequest);
 
             // Assert
-            // TODO replace with what it really is
-            Assert.IsTrue(response is OkNegotiatedContentResult<CalculationResponse>);
+            Assert.IsTrue(response is OkNegotiatedContentResult<CalculationResponse>, response.ToString());
         }
 
         //[Test]

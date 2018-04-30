@@ -14,14 +14,17 @@ namespace Ajf.CoreSolver.WebApi.Controllers
     public class CalculationController : ApiController
     {
         private readonly ICalculationRequestValidator _calculationRequestValidator;
+        private readonly ICalculationRepository _calculationRepository;
 
         /// <summary>
         /// Entry for new calculations and getting status on calculations requested
         /// </summary>
         /// <param name="calculationRequestValidator"></param>
-        public CalculationController(ICalculationRequestValidator calculationRequestValidator)
+        public CalculationController(ICalculationRequestValidator calculationRequestValidator,
+            ICalculationRepository calculationRepository)
         {
             _calculationRequestValidator = calculationRequestValidator;
+            _calculationRepository = calculationRepository;
         }
 
         /// <summary>
@@ -53,7 +56,8 @@ namespace Ajf.CoreSolver.WebApi.Controllers
 
                     // ------------
                     // Insert the request in database to keep track of calculations
-                    // ...
+                    // (Will throw ex if the transactionId has been used already)
+                    _calculationRepository.InsertCalculation(calculationRequest);
 
                     // ------------
                     // Add request to queue and let the queue processor handle it.

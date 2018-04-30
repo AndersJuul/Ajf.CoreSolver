@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculationRepository.cs" />
     <Compile Include="CalculationRequestValidator.cs" />
+    <Compile Include="ICalculationRepository.cs" />
     <Compile Include="ICalculationRequestValidator.cs" />
     <Compile Include="IValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
