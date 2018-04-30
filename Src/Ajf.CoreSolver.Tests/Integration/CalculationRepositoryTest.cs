@@ -10,6 +10,7 @@ namespace Ajf.CoreSolver.Tests.Integration
     public class CalculationRepositoryTest : BaseIntegrationTestWithDb
     {
         [Test]
+        [Category("Integration")]
         public void ThatCalculationCanBeInsertedAndRetrieved()
         {
             // Arrange
