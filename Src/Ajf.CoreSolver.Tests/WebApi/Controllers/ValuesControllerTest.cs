@@ -1,11 +1,17 @@
-﻿using Ajf.CoreSolver.Models;
+﻿using System.Net;
+using System.Web.Http.Results;
+using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.Tests.Base;
 using Ajf.CoreSolver.WebApi.Controllers;
+using AutoFixture;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Ajf.CoreSolver.Tests.WebApi.Controllers
 {
     [TestFixture]
-    public class ValuesControllerTest
+    public class ValuesControllerTest:BaseUnitTest
     {
         //[Test]
         //public void Get()
@@ -40,12 +46,23 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
         public void Post()
         {
             // Arrange
-            var controller = new CalculationController(null);
+            var calculationRequest = Fixture.Create<CalculationRequest>();
+            var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
+            var validationResult = Fixture
+                .Build<ValidationResult>()
+                .With(x => x.IsValid, true)
+                .Create();
+            calculationRequestValidator
+                .Stub(x => x.Validate(calculationRequest))
+                .Return(validationResult);
+            var controller = new CalculationController(calculationRequestValidator);
 
             // Act
-            controller.Post(new CalculationRequest());
+            var response = controller.Post(calculationRequest);
 
             // Assert
+            // TODO replace with what it really is
+            Assert.IsTrue(response is OkNegotiatedContentResult<CalculationResponse>);
         }
 
         //[Test]

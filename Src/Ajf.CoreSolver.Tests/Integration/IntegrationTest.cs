@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Tests.Base;
 using NUnit.Framework;
 using RestSharp;
 

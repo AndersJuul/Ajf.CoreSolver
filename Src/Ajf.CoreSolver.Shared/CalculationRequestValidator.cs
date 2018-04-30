@@ -9,7 +9,10 @@ namespace Ajf.CoreSolver.Shared
     {
         public IValidationResult Validate(CalculationRequest calculationRequest)
         {
-            throw new System.NotImplementedException();
+            return new ValidationResult
+            {
+                IsValid = true
+            };
         }
     }
 }

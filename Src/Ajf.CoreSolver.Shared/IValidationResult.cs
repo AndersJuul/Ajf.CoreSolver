@@ -2,6 +2,6 @@
 {
     public interface IValidationResult
     {
-        bool IsValid { get; }
+        bool IsValid { get; set; }
     }
 }

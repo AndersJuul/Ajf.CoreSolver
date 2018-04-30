@@ -1,11 +1,11 @@
 ﻿using System;
 using RestSharp;
 
-namespace Ajf.CoreSolver.Tests.Integration
+namespace Ajf.CoreSolver.Tests.Base
 {
     public abstract class BaseIntegrationTest
     {
-        protected string getTarget()
+        private string getTarget()
         {
             if (Environment.MachineName.ToLower() == "ajf-build-01")
                 return "ajf-qa-02";
