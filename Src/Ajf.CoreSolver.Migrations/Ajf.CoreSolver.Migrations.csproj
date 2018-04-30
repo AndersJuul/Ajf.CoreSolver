@@ -135,8 +135,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculationEntity.cs" />
-    <Compile Include="CoreSolverContext.cs" />
+    <Compile Include="Migrations\201804301747598_RenameCalculationsTable.cs" />
+    <Compile Include="Migrations\201804301747598_RenameCalculationsTable.Designer.cs">
+      <DependentUpon>201804301747598_RenameCalculationsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +149,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ajf.CoreSolver.DbModels\Ajf.CoreSolver.DbModels.csproj">
+      <Project>{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}</Project>
+      <Name>Ajf.CoreSolver.DbModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ajf.CoreSolver.Models\Ajf.CoreSolver.Models.csproj">
+      <Project>{F657D470-88DB-45CF-8041-2B993DD46FD6}</Project>
+      <Name>Ajf.CoreSolver.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804301747598_RenameCalculationsTable.resx">
+      <DependentUpon>201804301747598_RenameCalculationsTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\OctoPack.3.6.3\build\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.6.3\build\OctoPack.targets')" />

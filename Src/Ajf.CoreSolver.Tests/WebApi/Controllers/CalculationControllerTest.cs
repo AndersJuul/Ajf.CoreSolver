@@ -47,16 +47,17 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
             // Arrange
             var calculationRequest = Fixture.Create<CalculationRequest>();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
+            var calculationRepository = Fixture.Create<ICalculationRepository>();
+
             var validationResult = Fixture
                 .Build<ValidationResult>()
                 .With(x => x.IsValid, true)
                 .Create();
+
             calculationRequestValidator
                 .Stub(x => x.Validate(calculationRequest))
                 .Return(validationResult);
-            var calculationRepository = Fixture
-                .Build<CalculationRepository>()
-                .Create();
+            calculationRepository.Stub(x => x.InsertCalculation(calculationRequest));
 
             var controller = new CalculationController(calculationRequestValidator, calculationRepository);
 

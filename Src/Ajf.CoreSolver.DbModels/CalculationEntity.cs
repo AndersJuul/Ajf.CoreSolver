@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ajf.CoreSolver.Migrations
+namespace Ajf.CoreSolver.DbModels
 {
     public class CalculationEntity
     {

@@ -35,7 +35,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,17 +54,28 @@
   <ItemGroup>
     <Compile Include="CalculationRepository.cs" />
     <Compile Include="CalculationRequestValidator.cs" />
+    <Compile Include="DbContextProvider.cs" />
+    <Compile Include="DbContextProviderForTest.cs" />
     <Compile Include="ICalculationRepository.cs" />
     <Compile Include="ICalculationRequestValidator.cs" />
+    <Compile Include="IDbContextProvider.cs" />
     <Compile Include="IValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ajf.CoreSolver.DbModels\Ajf.CoreSolver.DbModels.csproj">
+      <Project>{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}</Project>
+      <Name>Ajf.CoreSolver.DbModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ajf.CoreSolver.Models\Ajf.CoreSolver.Models.csproj">
       <Project>{F657D470-88DB-45CF-8041-2B993DD46FD6}</Project>
       <Name>Ajf.CoreSolver.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

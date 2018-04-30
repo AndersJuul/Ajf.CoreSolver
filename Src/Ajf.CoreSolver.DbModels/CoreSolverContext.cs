@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Ajf.CoreSolver.Migrations
+namespace Ajf.CoreSolver.DbModels
 {
     public class CoreSolverContext : DbContext
     {
@@ -8,6 +8,6 @@ namespace Ajf.CoreSolver.Migrations
         {
             
         }
-        public DbSet<CalculationEntity> Blogs { get; set; }
+        public DbSet<CalculationEntity> Calculations { get; set; }
     }
 }

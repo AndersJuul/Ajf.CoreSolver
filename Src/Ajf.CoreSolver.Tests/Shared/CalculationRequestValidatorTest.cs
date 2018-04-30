@@ -10,7 +10,7 @@ namespace Ajf.CoreSolver.Tests.Shared
     public class CalculationRequestValidatorTest : BaseUnitTest
     {
         [Test]
-        public void Index()
+        public void ThatValidRequestIsValidated()
         {
             // Arrange
             var sut = new CalculationRequestValidator();

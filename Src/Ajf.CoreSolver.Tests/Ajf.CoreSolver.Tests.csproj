@@ -48,12 +48,17 @@
     <Reference Include="AutoFixture.AutoRhinoMock, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.AutoRhinoMocks.4.2.1\lib\net452\AutoFixture.AutoRhinoMock.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
@@ -110,8 +115,11 @@
   <ItemGroup>
     <Compile Include="Base\BaseIntegrationTest.cs" />
     <Compile Include="Base\BaseTest.cs" />
+    <Compile Include="Base\TestInitializer.cs" />
+    <Compile Include="Base\BaseIntegrationTestWithDb.cs" />
     <Compile Include="Integration\IntegrationTest.cs" />
     <Compile Include="Base\BaseUnitTest.cs" />
+    <Compile Include="Integration\CalculationRepositoryTest.cs" />
     <Compile Include="Shared\CalculationRequestValidatorTest.cs" />
     <Compile Include="WebApi\Controllers\CalculationControllerTest.cs" />
     <Compile Include="Program.cs" />
@@ -122,6 +130,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ajf.CoreSolver.DbModels\Ajf.CoreSolver.DbModels.csproj">
+      <Project>{337F1C99-62CF-4812-9EE8-F2E88E7F6E94}</Project>
+      <Name>Ajf.CoreSolver.DbModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ajf.CoreSolver.Models\Ajf.CoreSolver.Models.csproj">
       <Project>{F657D470-88DB-45CF-8041-2B993DD46FD6}</Project>
       <Name>Ajf.CoreSolver.Models</Name>
