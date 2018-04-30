@@ -1,4 +1,5 @@
-﻿using Ajf.CoreSolver.Models;
+﻿using System.Net;
+using Ajf.CoreSolver.Models;
 using NUnit.Framework;
 using RestSharp;
 
@@ -21,9 +22,9 @@ namespace Ajf.CoreSolver.Tests.Integration
 
             // Act
             var response = client.Execute<CalculationResponse>(request);
-            var content = response.Content; // raw content as string
-
+            
             // Assert
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }
