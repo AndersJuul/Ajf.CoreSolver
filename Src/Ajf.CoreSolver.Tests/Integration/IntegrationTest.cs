@@ -11,7 +11,7 @@ namespace Ajf.CoreSolver.Tests.Integration
     {
         [Test]
         [Category("Integration")]
-        public void ThatApiCanBeCalledLocally()
+        public void ThatApiCanBeCalled()
         {
             // Arrange
             var client = GetRestClient();
