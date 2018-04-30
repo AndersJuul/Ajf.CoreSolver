@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using Ajf.CoreSolver.Migrations.Migrations;
 using Ajf.Nuget.Logging;
@@ -36,19 +34,5 @@ namespace Ajf.CoreSolver.Migrations
             }
             Log.Logger.Information("Migration done without problems...");
         }
-    }
-    public class CoreSolverContext : DbContext
-    {
-        public CoreSolverContext():base("CoreSolverConnection")
-        {
-            
-        }
-        public DbSet<CalculationEntity> Blogs { get; set; }
-    }
-
-    public class CalculationEntity
-    {
-        [Key]
-        public Guid TransactionId { get; set; }
     }
 }
