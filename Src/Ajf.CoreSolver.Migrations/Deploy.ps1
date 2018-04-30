@@ -1,1 +1,1 @@
-﻿.\Ajf.RideShare.Migrate.exe
+﻿.\Ajf.CoreSolver.Migrations.exe
