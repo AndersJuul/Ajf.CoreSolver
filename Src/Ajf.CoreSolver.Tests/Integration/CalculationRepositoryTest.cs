@@ -13,7 +13,7 @@ namespace Ajf.CoreSolver.Tests.Integration
         public void ThatCalculationCanBeInsertedAndRetrieved()
         {
             // Arrange
-            var dbContextProviderForTest = new DbContextProviderForTest(DbContext);
+            var dbContextProviderForTest = new DbContextProviderForTest(ConnectionString);
             var sut = new CalculationRepository(dbContextProviderForTest);
             var calculationRequest = Fixture
                 .Build<CalculationRequest>()

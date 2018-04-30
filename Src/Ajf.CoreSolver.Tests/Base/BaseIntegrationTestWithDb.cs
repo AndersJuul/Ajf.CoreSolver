@@ -26,20 +26,19 @@ namespace Ajf.CoreSolver.Tests.Base
         {
             Database.SetInitializer(new TestInitializer());
 
-            //ConnectionString = $"Server=JuulServer2017;Database={_dbName};User Id=rideshare;Password=rideshare";
             var sqlConnectionStringBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["CoreSolverConnection"].ConnectionString);
             _dbName = sqlConnectionStringBuilder.InitialCatalog + "-Test." + Environment.MachineName +
                       DateTime.Now.ToString("yyyy-MM-dd.HH.mm.ss");
             sqlConnectionStringBuilder.InitialCatalog = _dbName;
             ConnectionString = sqlConnectionStringBuilder.ConnectionString;
 
-            DbContext = new CoreSolverContext { Database = { Connection = { ConnectionString = ConnectionString } } };
-            DbContext.Database.Initialize(true);
+            var dbContext = new CoreSolverContext { Database = { Connection = { ConnectionString = ConnectionString } } };
+            dbContext.Database.Initialize(true);
 
             //AutoMapperInitializor.Init();
         }
 
-        public CoreSolverContext DbContext { get; set; }
+        //public CoreSolverContext DbContext { get; set; }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()

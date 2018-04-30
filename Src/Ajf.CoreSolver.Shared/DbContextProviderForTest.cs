@@ -4,16 +4,25 @@ namespace Ajf.CoreSolver.Shared
 {
     public class DbContextProviderForTest : IDbContextProvider
     {
-        private readonly CoreSolverContext _dbContext;
+        private readonly string _connectionString;
 
-        public DbContextProviderForTest(CoreSolverContext dbContext)
+        public DbContextProviderForTest(string connectionString)
         {
-            _dbContext = dbContext;
+            _connectionString = connectionString;
         }
 
         public CoreSolverContext GetDbContext()
         {
-            return _dbContext;
+            return new CoreSolverContext
+            {
+                Database =
+                {
+                    Connection =
+                    {
+                        ConnectionString = _connectionString
+                    }
+                }
+            };
         }
     }
 }
