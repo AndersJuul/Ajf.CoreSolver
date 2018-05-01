@@ -1,6 +1,7 @@
 ﻿using Ajf.CoreSolver.DbModels;
 using Ajf.CoreSolver.Models.Internal;
 using AutoMapper;
+using Serilog;
 
 namespace Ajf.CoreSolver.Shared
 {
@@ -23,6 +24,8 @@ namespace Ajf.CoreSolver.Shared
 
             using (var context = _dbContextProvider.GetDbContext())
             {
+                Log.Logger.Debug(context.Database.Connection.ConnectionString);
+
                 context.Calculations.Add(calculationDto);
 
                 context.SaveChanges();
