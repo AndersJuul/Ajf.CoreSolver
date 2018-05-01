@@ -5,7 +5,9 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using Ajf.CoreSolver.DbModels;
 using Ajf.CoreSolver.Tests.Base;
+using Ajf.Nuget.Logging;
 using NUnit.Framework;
+using Serilog;
 
 namespace Ajf.CoreSolver.IntegrationTests.Base
 {
@@ -25,6 +27,11 @@ namespace Ajf.CoreSolver.IntegrationTests.Base
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            Log.Logger = StandardLoggerConfigurator
+                .GetLoggerConfig().MinimumLevel
+                .Debug()
+                .CreateLogger();
+
             Database.SetInitializer(new TestInitializer());
 
             var sqlConnectionStringBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["CoreSolverConnection"].ConnectionString);
