@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DummyFixture.cs" />
     <Compile Include="Shared\CalculationRequestValidatorTest.cs" />
     <Compile Include="WebApi\Controllers\CalculationControllerTest.cs" />
     <Compile Include="Program.cs" />
