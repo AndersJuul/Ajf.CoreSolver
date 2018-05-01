@@ -1,4 +1,5 @@
 ﻿using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.Internal;
 
 namespace Ajf.CoreSolver.Shared
 {
@@ -7,6 +8,6 @@ namespace Ajf.CoreSolver.Shared
     /// </summary>
     public interface ICalculationRepository
     {
-        void InsertCalculation(CalculationRequest calculationRequest);
+        void InsertCalculation(Calculation calculation);
     }
 }

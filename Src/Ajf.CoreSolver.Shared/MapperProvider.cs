@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DefaultRegistry.cs" company="Web Advanced">
 // Copyright 2012 Web Advanced (www.webadvanced.com)
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,29 +17,19 @@
 
 namespace Ajf.CoreSolver.WebApi.DependencyResolution
 {
-    using Ajf.CoreSolver.Shared;
+    using Ajf.CoreSolver.Models;
+    using Ajf.CoreSolver.Models.Internal;
     using AutoMapper;
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
+    public static class MapperProvider
+    {
+        public static IMapper GetMapper()
+        {
+            var config = new MapperConfiguration(cfg => {
 
-    public class DefaultRegistry : Registry {
-
-        public DefaultRegistry() {
-            Scan(
-                scan => {
-                    scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
-                });
-            Scan(
-                scan => {
-                    scan.AssemblyContainingType<ICalculationRequestValidator>();
-                    scan.WithDefaultConventions();
-                });
-            //For<IExample>().Use<Example>();
-
-            // Auto mapper config
-            For<IMapper>().Use(MapperProvider.GetMapper());
+                cfg.CreateMap<CalculationRequest, Calculation>();
+            });
+            var mapper = config.CreateMapper();
+            return mapper;
         }
-
     }
 }

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="CalculationRequest.cs" />
     <Compile Include="CalculationResponse.cs" />
+    <Compile Include="Internal\Calculation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

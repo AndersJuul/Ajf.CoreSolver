@@ -28,8 +28,8 @@ namespace Ajf.CoreSolver.IntegrationTests.Base
             Database.SetInitializer(new TestInitializer());
 
             var sqlConnectionStringBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["CoreSolverConnection"].ConnectionString);
-            _dbName = sqlConnectionStringBuilder.InitialCatalog + "-Test." + Environment.MachineName +
-                      DateTime.Now.ToString("yyyy-MM-dd.HH.mm.ss");
+            _dbName =
+                $"{sqlConnectionStringBuilder.InitialCatalog}-Test.{Environment.MachineName}-{DateTime.Now:yyyy-MM-dd.HH.mm.ss}";
             sqlConnectionStringBuilder.InitialCatalog = _dbName;
             ConnectionString = sqlConnectionStringBuilder.ConnectionString;
 
@@ -44,7 +44,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Base
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            //TearDownDatabase();
+            TearDownDatabase();
         }
 
         private void TearDownDatabase()

@@ -2,7 +2,9 @@
 using System.Net;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
+using AutoMapper;
 using Serilog;
 using Serilog.Context;
 
@@ -15,16 +17,19 @@ namespace Ajf.CoreSolver.WebApi.Controllers
     {
         private readonly ICalculationRequestValidator _calculationRequestValidator;
         private readonly ICalculationRepository _calculationRepository;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Entry for new calculations and getting status on calculations requested
         /// </summary>
         /// <param name="calculationRequestValidator"></param>
+        /// <param name="calculationRepository"></param>
         public CalculationController(ICalculationRequestValidator calculationRequestValidator,
-            ICalculationRepository calculationRepository)
+            ICalculationRepository calculationRepository, IMapper mapper)
         {
             _calculationRequestValidator = calculationRequestValidator;
             _calculationRepository = calculationRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -55,9 +60,14 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                     }
 
                     // ------------
+                    // Convert the parameter to internal model                    
+                    var calculation = _mapper.Map<CalculationRequest, Calculation>(calculationRequest);
+                    calculation.TransactionId = transactionId;
+
+                    // ------------
                     // Insert the request in database to keep track of calculations
                     // (Will throw ex if the transactionId has been used already)
-                    _calculationRepository.InsertCalculation(calculationRequest);
+                    _calculationRepository.InsertCalculation(calculation);
 
                     // ------------
                     // Add request to queue and let the queue processor handle it.
