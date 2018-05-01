@@ -12,7 +12,7 @@ namespace Ajf.CoreSolver.Tests.Integration
     {
         [Test]
         [Category("Integration")]
-        public void ThatApiCanBeCalled()
+        public void ThatPostingValidCalculationIsSucces()
         {
             // Arrange
             var client = GetRestClient();

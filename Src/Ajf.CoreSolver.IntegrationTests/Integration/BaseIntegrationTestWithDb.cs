@@ -43,7 +43,7 @@ namespace Ajf.CoreSolver.Tests.Base
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            TearDownDatabase();
+            //TearDownDatabase();
         }
 
         private void TearDownDatabase()
