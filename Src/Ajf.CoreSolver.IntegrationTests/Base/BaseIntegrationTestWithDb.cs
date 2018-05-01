@@ -4,9 +4,10 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using Ajf.CoreSolver.DbModels;
+using Ajf.CoreSolver.Tests.Base;
 using NUnit.Framework;
 
-namespace Ajf.CoreSolver.Tests.Base
+namespace Ajf.CoreSolver.IntegrationTests.Base
 {
     [TestFixture]
     public abstract class BaseIntegrationTestWithDb:BaseTest

@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Ajf.CoreSolver.DbModels;
 
-namespace Ajf.CoreSolver.Tests.Base
+namespace Ajf.CoreSolver.IntegrationTests.Base
 {
     public class TestInitializer : DropCreateDatabaseAlways<CoreSolverContext>
     {

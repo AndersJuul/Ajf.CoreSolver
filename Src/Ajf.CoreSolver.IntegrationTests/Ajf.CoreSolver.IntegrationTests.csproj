@@ -142,11 +142,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integration\BaseIntegrationTest.cs" />
-    <Compile Include="Integration\BaseIntegrationTestWithDb.cs" />
+    <Compile Include="Base\BaseIntegrationTest.cs" />
+    <Compile Include="Base\BaseIntegrationTestWithDb.cs" />
     <Compile Include="Integration\CalculationRepositoryTest.cs" />
     <Compile Include="Integration\IntegrationTest.cs" />
-    <Compile Include="Integration\TestInitializer.cs" />
+    <Compile Include="Base\TestInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

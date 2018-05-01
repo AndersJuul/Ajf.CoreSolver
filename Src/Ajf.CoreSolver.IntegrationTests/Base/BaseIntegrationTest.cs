@@ -1,7 +1,8 @@
 ﻿using System;
+using Ajf.CoreSolver.Tests.Base;
 using RestSharp;
 
-namespace Ajf.CoreSolver.Tests.Base
+namespace Ajf.CoreSolver.IntegrationTests.Base
 {
     public abstract class BaseIntegrationTest:BaseTest
     {
