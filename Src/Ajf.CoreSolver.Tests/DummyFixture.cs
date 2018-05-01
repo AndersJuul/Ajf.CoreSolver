@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Ajf.CoreSolver.Shared;
+using NUnit.Framework;
 
 namespace Ajf.CoreSolver.Tests
 {
@@ -8,6 +9,7 @@ namespace Ajf.CoreSolver.Tests
         [Test]
         public void ThatTrue()
         {
+            new ValidationResult();
         }
     }
 }
