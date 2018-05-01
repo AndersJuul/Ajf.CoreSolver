@@ -26,7 +26,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             var response = client.Execute<CalculationResponse>(request);
 
             // Assert
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, "Success was expected, got: " +response);
         }
     }
 }
