@@ -24,6 +24,7 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         /// </summary>
         /// <param name="calculationRequestValidator"></param>
         /// <param name="calculationRepository"></param>
+        /// <param name="mapper"></param>
         public CalculationController(ICalculationRequestValidator calculationRequestValidator,
             ICalculationRepository calculationRepository, IMapper mapper)
         {
@@ -32,6 +33,26 @@ namespace Ajf.CoreSolver.WebApi.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="transactionId"></param>
+        /// <returns></returns>
+        public IHttpActionResult Get(Guid transactionId)
+        {
+            // ------------
+            // Return a response indicating success and with transaction id
+            //   for when the caller wish to query results.
+            var calculationResponse = new CalculationResponse
+            {
+                TransactionId =transactionId
+            };
+
+            Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
+
+            return Ok(calculationResponse);
+        }
+        
         /// <summary>
         ///     Receives a calculationRequest and puts it in queue to be calculated.
         /// </summary>
