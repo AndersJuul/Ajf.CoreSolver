@@ -25,7 +25,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             // Act
             var responsePost = client.Execute<CalculationResponse>(requestPost);
 
-            var requestGet = new RestRequest("api/calculation", Method.GET)
+            var requestGet = new RestRequest("api/calculationstatus", Method.GET)
             {
                 RequestFormat = DataFormat.Json
             };

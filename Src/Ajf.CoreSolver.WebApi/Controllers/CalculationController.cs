@@ -33,36 +33,36 @@ namespace Ajf.CoreSolver.WebApi.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// Returns the status of a calculation
-        /// </summary>
-        /// <param name="transactionId"></param>
-        /// <returns></returns>
-        public IHttpActionResult Get(Guid transactionId)
-        {
-            using (LogContext.PushProperty("TransactionId", transactionId))
-            {
-                try
-                {
-                    // ------------
-                    // Return a response indicating success and with transaction id
-                    //   for when the caller wish to query results.
-                    var calculationResponse = new CalculationResponse
-                    {
-                        TransactionId = transactionId
-                    };
+        ///// <summary>
+        ///// Returns the status of a calculation
+        ///// </summary>
+        ///// <param name="transactionId"></param>
+        ///// <returns></returns>
+        //public IHttpActionResult Get(Guid transactionId)
+        //{
+        //    using (LogContext.PushProperty("TransactionId", transactionId))
+        //    {
+        //        try
+        //        {
+        //            // ------------
+        //            // Return a response indicating success and with transaction id
+        //            //   for when the caller wish to query results.
+        //            var calculationResponse = new CalculationResponse
+        //            {
+        //                TransactionId = transactionId
+        //            };
 
-                    Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
+        //            Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
 
-                    return Ok(calculationResponse);
-                }
-                catch (Exception e)
-                {
-                    Log.Logger.Error(e, "Calculation.Post");
-                    return BadRequest(transactionId.ToString());
-                }
-            }
-        }
+        //            return Ok(calculationResponse);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Log.Logger.Error(e, "Calculation.Post");
+        //            return BadRequest(transactionId.ToString());
+        //        }
+        //    }
+        //}
 
         /// <summary>
         ///     Receives a calculationRequest and puts it in queue to be calculated.

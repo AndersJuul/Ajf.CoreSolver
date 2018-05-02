@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Shared\CalculationRequestValidatorTest.cs" />
+    <Compile Include="WebApi\Controllers\CalculationStatusControllerTest.cs" />
     <Compile Include="WebApi\Controllers\CalculationControllerTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

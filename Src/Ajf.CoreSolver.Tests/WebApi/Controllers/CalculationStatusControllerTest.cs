@@ -13,16 +13,17 @@ using Rhino.Mocks;
 namespace Ajf.CoreSolver.Tests.WebApi.Controllers
 {
     [TestFixture]
-    public class CalculationControllerTest : BaseUnitTest
+    public class CalculationStatusControllerTest : BaseUnitTest
     {
         [Test]
-        public void Post()
+        public void Get()
         {
             // Arrange
             var calculation = Fixture.Create<Calculation>();
             var calculationRequest = Fixture.Create<CalculationRequest>();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
             var calculationRepository = Fixture.Create<ICalculationRepository>();
+            var transactionId = Fixture.Create<Guid>();
 
             var validationResult = Fixture
                 .Build<ValidationResult>()
@@ -34,13 +35,14 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
                 .Return(validationResult);
             calculationRepository.Stub(x => x.InsertCalculation(calculation));
 
-            var controller = new CalculationController(calculationRequestValidator, calculationRepository,MapperProvider.GetMapper());
+            var controller = new CalculationStatusController(calculationRequestValidator, calculationRepository, MapperProvider.GetMapper());
 
             // Act
-            var response = controller.Post(calculationRequest);
+            var result = controller.Get(transactionId);
 
             // Assert
-            Assert.IsTrue(response is OkNegotiatedContentResult<CalculationResponse>, response.ToString());
+            Assert.IsTrue(result is OkNegotiatedContentResult<CalculationResponse>, result.ToString());
+            Assert.AreEqual(transactionId, (result as OkNegotiatedContentResult<CalculationResponse>).Content.TransactionId);
         }
     }
 }
