@@ -1,95 +1,76 @@
-﻿//using System.Web.Http.Results;
-//using Ajf.CoreSolver.Models;
-//using Ajf.CoreSolver.Shared;
-//using Ajf.CoreSolver.Tests.Base;
-//using Ajf.CoreSolver.WebApi.Controllers;
-//using AutoFixture;
-//using NUnit.Framework;
-//using Rhino.Mocks;
+﻿using System;
+using System.Web.Http.Results;
+using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.Internal;
+using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.Tests.Base;
+using Ajf.CoreSolver.WebApi.Controllers;
+using Ajf.CoreSolver.WebApi.DependencyResolution;
+using AutoFixture;
+using NUnit.Framework;
+using Rhino.Mocks;
 
-//namespace Ajf.CoreSolver.Tests.WebApi.Controllers
-//{
-//    [TestFixture]
-//    public class CalculationControllerTest : BaseUnitTest
-//    {
-//        //[Test]
-//        //public void Get()
-//        //{
-//        //    // Arrange
-//        //    CalculationController controller = new CalculationController();
+namespace Ajf.CoreSolver.Tests.WebApi.Controllers
+{
+    [TestFixture]
+    public class CalculationControllerTest : BaseUnitTest
+    {
+        [Test]
+        public void Get()
+        {
+            // Arrange
+            var calculation = Fixture.Create<Calculation>();
+            var calculationRequest = Fixture.Create<CalculationRequest>();
+            var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
+            var calculationRepository = Fixture.Create<ICalculationRepository>();
+            var transactionId = Fixture.Create<Guid>();
 
-//        //    // Act
-//        //    IEnumerable<string> result = controller.Get();
+            var validationResult = Fixture
+                .Build<ValidationResult>()
+                .With(x => x.IsValid, true)
+                .Create();
 
-//        //    // Assert
-//        //    Assert.IsNotNull(result);
-//        //    Assert.AreEqual(2, result.Count());
-//        //    Assert.AreEqual("value1", result.ElementAt(0));
-//        //    Assert.AreEqual("value2", result.ElementAt(1));
-//        //}
+            calculationRequestValidator
+                .Stub(x => x.Validate(calculationRequest))
+                .Return(validationResult);
+            calculationRepository.Stub(x => x.InsertCalculation(calculation));
 
-//        //[Test]
-//        //public void GetById()
-//        //{
-//        //    // Arrange
-//        //    CalculationController controller = new CalculationController();
+            var controller = new CalculationController(calculationRequestValidator, calculationRepository, MapperProvider.GetMapper());
 
-//        //    // Act
-//        //    string result = controller.Get(5);
+            // Act
+            var result = controller.Get(transactionId);
 
-//        //    // Assert
-//        //    Assert.AreEqual("value", result);
-//        //}
+            // Assert
+            Assert.IsTrue(result is OkNegotiatedContentResult<CalculationResponse>, result.ToString());
+            Assert.AreEqual(transactionId, (result as OkNegotiatedContentResult<CalculationResponse>).Content.TransactionId);
+        }
 
-//        [Test]
-//        public void Post()
-//        {
-//            // Arrange
-//            var calculationRequest = Fixture.Create<CalculationRequest>();
-//            var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
-//            var calculationRepository = Fixture.Create<ICalculationRepository>();
+        [Test]
+        public void Post()
+        {
+            // Arrange
+            var calculation = Fixture.Create<Calculation>();
+            var calculationRequest = Fixture.Create<CalculationRequest>();
+            var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
+            var calculationRepository = Fixture.Create<ICalculationRepository>();
 
-//            var validationResult = Fixture
-//                .Build<ValidationResult>()
-//                .With(x => x.IsValid, true)
-//                .Create();
+            var validationResult = Fixture
+                .Build<ValidationResult>()
+                .With(x => x.IsValid, true)
+                .Create();
 
-//            calculationRequestValidator
-//                .Stub(x => x.Validate(calculationRequest))
-//                .Return(validationResult);
-//            calculationRepository.Stub(x => x.InsertCalculation(calculationRequest));
+            calculationRequestValidator
+                .Stub(x => x.Validate(calculationRequest))
+                .Return(validationResult);
+            calculationRepository.Stub(x => x.InsertCalculation(calculation));
 
-//            var controller = new CalculationController(calculationRequestValidator, calculationRepository);
+            var controller = new CalculationController(calculationRequestValidator, calculationRepository,MapperProvider.GetMapper());
 
-//            // Act
-//            var response = controller.Post(calculationRequest);
+            // Act
+            var response = controller.Post(calculationRequest);
 
-//            // Assert
-//            Assert.IsTrue(response is OkNegotiatedContentResult<CalculationResponse>, response.ToString());
-//        }
-
-//        //[Test]
-//        //public void Put()
-//        //{
-//        //    // Arrange
-//        //    CalculationController controller = new CalculationController();
-
-//        //    // Act
-//        //    controller.Put(5, "value");
-
-//        //    // Assert
-//        //}
-
-//        //[Test]
-//        //public void Delete()
-//        //{
-//        //    // Arrange
-//        //    CalculationController controller = new CalculationController();
-
-//        //    // Act
-//        //    controller.Delete(5);
-
-//        //    // Assert
-//        //}
-//    }
-//}
+            // Assert
+            Assert.IsTrue(response is OkNegotiatedContentResult<CalculationResponse>, response.ToString());
+        }
+    }
+}
