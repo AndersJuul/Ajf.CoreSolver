@@ -35,6 +35,8 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, responsePost.StatusCode, "Success was expected, got: " + responsePost);
             Assert.AreEqual(HttpStatusCode.OK, responseCheck.StatusCode, "Success was expected, got: " + responseCheck);
+            var response = responseCheck.Data;
+            Assert.AreEqual(CalculationStatus.CalculationQueued, response.CalculationStatus);
         }
     }
 }

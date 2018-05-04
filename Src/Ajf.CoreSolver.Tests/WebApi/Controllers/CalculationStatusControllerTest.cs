@@ -19,21 +19,11 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
         public void Get()
         {
             // Arrange
-            var calculation = Fixture.Create<Calculation>();
-            var calculationRequest = Fixture.Create<CalculationRequest>();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
             var calculationRepository = Fixture.Create<ICalculationRepository>();
             var transactionId = Fixture.Create<Guid>();
 
-            var validationResult = Fixture
-                .Build<ValidationResult>()
-                .With(x => x.IsValid, true)
-                .Create();
-
-            calculationRequestValidator
-                .Stub(x => x.Validate(calculationRequest))
-                .Return(validationResult);
-            calculationRepository.Stub(x => x.InsertCalculation(calculation));
+            calculationRepository.Stub(x => x.GetCalculationStatus(transactionId)).Return(CalculationStatus.CalculationQueued);
 
             var controller = new CalculationStatusController(calculationRequestValidator, calculationRepository, MapperProvider.GetMapper());
 
@@ -42,7 +32,9 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
 
             // Assert
             Assert.IsTrue(result is OkNegotiatedContentResult<CalculationResponse>, result.ToString());
-            Assert.AreEqual(transactionId, (result as OkNegotiatedContentResult<CalculationResponse>).Content.TransactionId);
+            var calculationResponse = (result as OkNegotiatedContentResult<CalculationResponse>).Content;
+            Assert.AreEqual(transactionId, calculationResponse.TransactionId);
+            Assert.AreEqual(CalculationStatus.CalculationQueued, calculationResponse.CalculationStatus);
         }
     }
 }

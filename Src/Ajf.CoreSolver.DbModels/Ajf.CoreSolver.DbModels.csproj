@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculationEntity.cs" />
+    <Compile Include="CalculationStatus.cs" />
     <Compile Include="CoreSolverContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

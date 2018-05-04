@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Shared;
@@ -38,16 +39,20 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         /// <returns></returns>
         public IHttpActionResult Get(Guid transactionId)
         {
+            using (LogContext.PushProperty("Method", MethodBase.GetCurrentMethod().Name) )
             using (LogContext.PushProperty("TransactionId", transactionId))
             {
                 try
                 {
+                    var calculationStatus = _calculationRepository.GetCalculationStatus(transactionId);
+
                     // ------------
                     // Return a response indicating success and with transaction id
                     //   for when the caller wish to query results.
                     var calculationResponse = new CalculationResponse
                     {
-                        TransactionId = transactionId
+                        TransactionId = transactionId,
+                        CalculationStatus = calculationStatus
                     };
 
                     Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);

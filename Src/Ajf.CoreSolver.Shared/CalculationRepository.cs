@@ -1,4 +1,7 @@
-﻿using Ajf.CoreSolver.DbModels;
+﻿using System;
+using System.Linq;
+using Ajf.CoreSolver.DbModels;
+using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using AutoMapper;
 using Serilog;
@@ -24,11 +27,27 @@ namespace Ajf.CoreSolver.Shared
 
             using (var context = _dbContextProvider.GetDbContext())
             {
-                Log.Logger.Debug(context.Database.Connection.ConnectionString);
-
                 context.Calculations.Add(calculationDto);
 
                 context.SaveChanges();
+            }
+        }
+
+        public CalculationStatus GetCalculationStatus(Guid transactionId)
+        {
+            using (var context = _dbContextProvider.GetDbContext())
+            {
+                Log.Logger.Debug(context.Database.Connection.ConnectionString);
+
+                var calculationDto =
+                    context
+                        .Calculations
+                        .Single(x => x.TransactionId == transactionId);
+
+                var calculationStatus = _mapper
+                    .Map<CalculationStatusDto,CalculationStatus>(calculationDto.CalculationStatus);
+
+                return calculationStatus;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Reflection;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
@@ -77,6 +78,7 @@ namespace Ajf.CoreSolver.WebApi.Controllers
             // transaction id to trace this calculation across processes.
             var transactionId = Guid.NewGuid();
 
+            using (LogContext.PushProperty("Method", MethodBase.GetCurrentMethod().Name))
             using (LogContext.PushProperty("TransactionId", transactionId))
             {
                 try
@@ -90,9 +92,10 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                         return Content(HttpStatusCode.BadRequest, validationResult.ToString());
 
                     // ------------
-                    // Convert the parameter to internal model                    
+                    // Convert the request to internal model, add transaction id and status. 
                     var calculation = _mapper.Map<CalculationRequest, Calculation>(calculationRequest);
                     calculation.TransactionId = transactionId;
+                    calculation.CalculationStatus = CalculationStatus.CalculationQueued;
 
                     // ------------
                     // Insert the request in database to keep track of calculations

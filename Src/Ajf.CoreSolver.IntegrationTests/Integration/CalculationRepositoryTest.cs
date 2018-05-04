@@ -1,4 +1,5 @@
 ﻿using Ajf.CoreSolver.IntegrationTests.Base;
+using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
 using Ajf.CoreSolver.WebApi.DependencyResolution;
@@ -19,14 +20,15 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             var sut = new CalculationRepository(dbContextProviderForTest, MapperProvider.GetMapper());
             var calculation = Fixture
                 .Build<Calculation>()
+                .With(x=>x.CalculationStatus,CalculationStatus.CalculationQueued)
                 .Create();
 
             // Act
             sut.InsertCalculation(calculation);
-            //var retrieved = sut.GetCalculationRequest(calculationRequest.);
+            var retrieved = sut.GetCalculationStatus(calculation.TransactionId);
 
             // Assert
-            //Assert.IsTrue(validationResult.IsValid);
+            Assert.AreEqual(calculation.CalculationStatus, retrieved);
         }
     }
 }

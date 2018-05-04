@@ -46,8 +46,6 @@ namespace Ajf.CoreSolver.IntegrationTests.Base
             //AutoMapperInitializor.Init();
         }
 
-        //public CoreSolverContext DbContext { get; set; }
-
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {

@@ -7,5 +7,7 @@ namespace Ajf.CoreSolver.DbModels
     {
         [Key]
         public Guid TransactionId { get; set; }
+
+        public CalculationStatusDto CalculationStatus { get; set; }
     }
 }

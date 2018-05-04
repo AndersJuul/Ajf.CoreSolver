@@ -15,18 +15,35 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using Ajf.CoreSolver.DbModels;
+using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.Internal;
+using AutoMapper;
+
 namespace Ajf.CoreSolver.WebApi.DependencyResolution
 {
-    using Ajf.CoreSolver.Models;
-    using Ajf.CoreSolver.Models.Internal;
-    using AutoMapper;
     public static class MapperProvider
     {
         public static IMapper GetMapper()
         {
-            var config = new MapperConfiguration(cfg => {
-
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Calculation, CalculationEntity>();
                 cfg.CreateMap<CalculationRequest, Calculation>();
+                cfg.CreateMap<CalculationStatusDto, CalculationStatus>()
+                    .ConvertUsing(value =>
+                    {
+                        switch (value)
+                        {
+                            case CalculationStatusDto.None:
+                                return CalculationStatus.None;
+                            case CalculationStatusDto.CalculationQueued:
+                                return CalculationStatus.CalculationQueued;
+                            default:
+                                throw new ArgumentException("Unknown CalculationStatusDto; couldn't map");
+                        }
+                    });
             });
             var mapper = config.CreateMapper();
             return mapper;

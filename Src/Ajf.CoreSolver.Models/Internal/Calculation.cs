@@ -9,5 +9,6 @@ namespace Ajf.CoreSolver.Models.Internal
     public class Calculation 
     {
         public Guid TransactionId { get; set; }
+        public CalculationStatus CalculationStatus { get; set; }
     }
 }
