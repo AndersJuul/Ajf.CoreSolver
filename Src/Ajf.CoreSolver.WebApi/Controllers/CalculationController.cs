@@ -73,54 +73,54 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         /// <response code="400">Returned for technical (unanticipated) errors.</response>
         /// <response code="400">Returned for validation errors; validation feedback in response (for debug).</response>
         public IHttpActionResult Post([FromBody] CalculationRequest calculationRequest)
+        {
+            // transaction id to trace this calculation across processes.
+            var transactionId = Guid.NewGuid();
+
+            using (LogContext.PushProperty("TransactionId", transactionId))
             {
-                // transaction id to trace this calculation across processes.
-                var transactionId = Guid.NewGuid();
-
-                using (LogContext.PushProperty("TransactionId", transactionId))
+                try
                 {
-                    try
+                    Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
+
+                    // ------------
+                    // Validate input, return description of the problem if failing.
+                    var validationResult = _calculationRequestValidator.Validate(calculationRequest);
+                    if (!validationResult.IsValid)
+                        return Content(HttpStatusCode.BadRequest, validationResult.ToString());
+
+                    // ------------
+                    // Convert the parameter to internal model                    
+                    var calculation = _mapper.Map<CalculationRequest, Calculation>(calculationRequest);
+                    calculation.TransactionId = transactionId;
+
+                    // ------------
+                    // Insert the request in database to keep track of calculations
+                    // (Will throw ex if the transactionId has been used already)
+                    _calculationRepository.InsertCalculation(calculation);
+
+                    // ------------
+                    // Add request to queue and let the queue processor handle it.
+                    // ...
+
+                    // ------------
+                    // Return a response indicating success and with transaction id
+                    //   for when the caller wish to query results.
+                    var calculationResponse = new CalculationResponse
                     {
-                        Log.Logger.Debug("CalculationRequest : {@CalculationRequest}", calculationRequest);
+                        TransactionId = transactionId
+                    };
 
-                        // ------------
-                        // Validate input, return description of the problem if failing.
-                        var validationResult = _calculationRequestValidator.Validate(calculationRequest);
-                        if (!validationResult.IsValid)
-                            return Content(HttpStatusCode.BadRequest, validationResult.ToString());
+                    Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
 
-                        // ------------
-                        // Convert the parameter to internal model                    
-                        var calculation = _mapper.Map<CalculationRequest, Calculation>(calculationRequest);
-                        calculation.TransactionId = transactionId;
-
-                        // ------------
-                        // Insert the request in database to keep track of calculations
-                        // (Will throw ex if the transactionId has been used already)
-                        _calculationRepository.InsertCalculation(calculation);
-
-                        // ------------
-                        // Add request to queue and let the queue processor handle it.
-                        // ...
-
-                        // ------------
-                        // Return a response indicating success and with transaction id
-                        //   for when the caller wish to query results.
-                        var calculationResponse = new CalculationResponse
-                        {
-                            TransactionId = transactionId
-                        };
-
-                        Log.Logger.Debug("Returning : {@CalculationResponse}", calculationResponse);
-
-                        return Ok(calculationResponse);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Logger.Error(e, "Calculation.Post");
-                        return BadRequest(transactionId.ToString());
-                    }
+                    return Ok(calculationResponse);
+                }
+                catch (Exception e)
+                {
+                    Log.Logger.Error(e, "Calculation.Post");
+                    return BadRequest(transactionId.ToString());
                 }
             }
         }
     }
+}

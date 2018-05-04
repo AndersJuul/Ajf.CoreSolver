@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Net;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
-using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
 using AutoMapper;
 using Serilog;
@@ -34,7 +32,7 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         }
 
         /// <summary>
-        /// Returns the status of a calculation
+        ///     Returns the status of a calculation
         /// </summary>
         /// <param name="transactionId"></param>
         /// <returns></returns>
