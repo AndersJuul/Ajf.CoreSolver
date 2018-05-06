@@ -34,7 +34,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Base
 
             Database.SetInitializer(new TestInitializer());
 
-            var sqlConnectionStringBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["CoreSolverConnection"].ConnectionString);
+            var sqlConnectionStringBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["CoreSolverConnectionExpress"].ConnectionString);
             _dbName =
                 $"{sqlConnectionStringBuilder.InitialCatalog}-Test.{Environment.MachineName}-{DateTime.Now:yyyy-MM-dd.HH.mm.ss}";
             sqlConnectionStringBuilder.InitialCatalog = _dbName;
