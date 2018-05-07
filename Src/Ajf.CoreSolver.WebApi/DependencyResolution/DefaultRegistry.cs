@@ -22,8 +22,9 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution
     using EasyNetQ;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
+    using System.Diagnostics.CodeAnalysis;
 
-
+    [ExcludeFromCodeCoverage]
     public class DefaultRegistry : StructureMap.Registry {
 
         public DefaultRegistry() {
