@@ -3,11 +3,13 @@ using WebActivatorEx;
 using Ajf.CoreSolver.WebApi;
 using Swashbuckle.Application;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
 namespace Ajf.CoreSolver.WebApi
 {
+    [ExcludeFromCodeCoverage]
     public class SwaggerConfig
     {
         public static void Register()
