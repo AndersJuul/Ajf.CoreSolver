@@ -17,10 +17,12 @@
 
 using System.Web.Http;
 using Ajf.CoreSolver.WebApi.DependencyResolution;
+using System.Diagnostics.CodeAnalysis;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Ajf.CoreSolver.WebApi.App_Start.StructuremapWebApi), "Start")]
 
 namespace Ajf.CoreSolver.WebApi.App_Start {
+    [ExcludeFromCodeCoverage]
     public static class StructuremapWebApi {
         public static void Start() {
 			var container = StructuremapMvc.StructureMapDependencyScope.Container;

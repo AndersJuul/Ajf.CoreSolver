@@ -30,7 +30,9 @@ namespace Ajf.CoreSolver.WebApi.App_Start {
 	using Ajf.CoreSolver.WebApi.DependencyResolution;
 
     using StructureMap;
-    
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
 	public static class StructuremapMvc {
         #region Public Properties
 
