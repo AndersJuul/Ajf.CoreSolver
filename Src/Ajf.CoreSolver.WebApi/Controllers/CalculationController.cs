@@ -110,12 +110,12 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                     // ------------
                     // Add request to queue and let the queue processor handle it.
                     // ...
-                    //var calculationRequestedEvent = new CalculationRequestedEvent
-                    //{
-                    //    TransactionId = transactionId
-                    //};
-                    //_bus.Publish(calculationRequestedEvent);
-                    //Log.Logger.Information("Message broadcasted that calculation is requested: {@message}", calculationRequestedEvent);
+                    var calculationRequestedEvent = new CalculationRequestedEvent
+                    {
+                        TransactionId = transactionId
+                    };
+                    _bus.Publish(calculationRequestedEvent);
+                    Log.Logger.Information("Message broadcasted that calculation is requested: {@message}", calculationRequestedEvent);
 
                     // ------------
                     // Return a response indicating success and with transaction id
