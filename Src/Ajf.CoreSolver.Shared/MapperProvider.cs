@@ -16,13 +16,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Ajf.CoreSolver.DbModels;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using AutoMapper;
 
-namespace Ajf.CoreSolver.WebApi.DependencyResolution
+namespace Ajf.CoreSolver.Shared
 {
+    [ExcludeFromCodeCoverage]
     public static class MapperProvider
     {
         public static IMapper GetMapper()

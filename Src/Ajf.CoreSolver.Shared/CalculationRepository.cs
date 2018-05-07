@@ -4,7 +4,6 @@ using Ajf.CoreSolver.DbModels;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using AutoMapper;
-using Serilog;
 
 namespace Ajf.CoreSolver.Shared
 {

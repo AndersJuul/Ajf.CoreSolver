@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Shared;
-using AutoMapper;
 using Serilog;
 using Serilog.Context;
 
@@ -15,21 +14,14 @@ namespace Ajf.CoreSolver.WebApi.Controllers
     public class CalculationStatusController : ApiController
     {
         private readonly ICalculationRepository _calculationRepository;
-        private readonly ICalculationRequestValidator _calculationRequestValidator;
-        private readonly IMapper _mapper;
 
         /// <summary>
         ///     Entry for new calculations and getting status on calculations requested
         /// </summary>
-        /// <param name="calculationRequestValidator"></param>
         /// <param name="calculationRepository"></param>
-        /// <param name="mapper"></param>
-        public CalculationStatusController(ICalculationRequestValidator calculationRequestValidator,
-            ICalculationRepository calculationRepository, IMapper mapper)
+        public CalculationStatusController(ICalculationRepository calculationRepository)
         {
-            _calculationRequestValidator = calculationRequestValidator;
             _calculationRepository = calculationRepository;
-            _mapper = mapper;
         }
 
         /// <summary>

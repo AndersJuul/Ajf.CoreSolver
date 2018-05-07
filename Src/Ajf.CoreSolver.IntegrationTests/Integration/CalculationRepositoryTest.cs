@@ -2,7 +2,6 @@
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
-using Ajf.CoreSolver.WebApi.DependencyResolution;
 using AutoFixture;
 using NUnit.Framework;
 
