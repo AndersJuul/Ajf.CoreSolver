@@ -16,7 +16,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
     public class CalculationStatusControllerTest : BaseUnitTest
     {
         [Test]
-        public void Get()
+        public void ThatGetReturnsCalculationResultWithStatus()
         {
             // Arrange
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
@@ -35,6 +35,24 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
             var calculationResponse = (result as OkNegotiatedContentResult<CalculationResponse>).Content;
             Assert.AreEqual(transactionId, calculationResponse.TransactionId);
             Assert.AreEqual(CalculationStatus.CalculationQueued, calculationResponse.CalculationStatus);
+        }
+        [Test]
+        public void ThatGetReturnsBadRequestInCaseOfException()
+        {
+            // Arrange
+            var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
+            var calculationRepository = Fixture.Create<ICalculationRepository>();
+            var transactionId = Fixture.Create<Guid>();
+
+            calculationRepository.Stub(x => x.GetCalculationStatus(transactionId)).Throw(new Exception());
+
+            var controller = new CalculationStatusController(calculationRequestValidator, calculationRepository, MapperProvider.GetMapper());
+
+            // Act
+            var result = controller.Get(transactionId);
+
+            // Assert
+            Assert.IsTrue(result is BadRequestErrorMessageResult, result.ToString());
         }
     }
 }
