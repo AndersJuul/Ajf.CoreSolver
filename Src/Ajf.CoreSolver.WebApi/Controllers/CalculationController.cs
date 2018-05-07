@@ -94,7 +94,10 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                     // Validate input, return description of the problem if failing.
                     var validationResult = _calculationRequestValidator.Validate(calculationRequest);
                     if (!validationResult.IsValid)
-                        return Content(HttpStatusCode.BadRequest, validationResult.ToString());
+                    {
+                        Log.Logger.Debug("Invalid request : {@ValidationResult}", validationResult);
+                        return BadRequest(validationResult.ToString());
+                    }
 
                     // ------------
                     // Convert the request to internal model, add transaction id and status. 

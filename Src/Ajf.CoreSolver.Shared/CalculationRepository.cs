@@ -37,8 +37,6 @@ namespace Ajf.CoreSolver.Shared
         {
             using (var context = _dbContextProvider.GetDbContext())
             {
-                Log.Logger.Debug(context.Database.Connection.ConnectionString);
-
                 var calculationDto =
                     context
                         .Calculations

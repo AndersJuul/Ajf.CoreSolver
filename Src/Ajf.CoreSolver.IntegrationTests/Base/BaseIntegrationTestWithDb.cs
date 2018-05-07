@@ -40,7 +40,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Base
             sqlConnectionStringBuilder.InitialCatalog = _dbName;
             ConnectionString = sqlConnectionStringBuilder.ConnectionString;
 
-            Log.Logger.Debug("CS: " + ConnectionString);
+            //Log.Logger.Debug("CS: " + ConnectionString);
 
             var dbContext = new CoreSolverContext { Database = { Connection = { ConnectionString = ConnectionString } } };
             dbContext.Database.Initialize(true);
