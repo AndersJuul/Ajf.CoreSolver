@@ -5,7 +5,9 @@ using System.Web.Http;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.Shared.QueueEvents;
 using AutoMapper;
+using EasyNetQ;
 using Serilog;
 using Serilog.Context;
 
@@ -19,6 +21,7 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         private readonly ICalculationRepository _calculationRepository;
         private readonly ICalculationRequestValidator _calculationRequestValidator;
         private readonly IMapper _mapper;
+        private readonly IBus _bus;
 
         /// <summary>
         ///     Entry for new calculations and getting status on calculations requested
@@ -26,12 +29,14 @@ namespace Ajf.CoreSolver.WebApi.Controllers
         /// <param name="calculationRequestValidator"></param>
         /// <param name="calculationRepository"></param>
         /// <param name="mapper"></param>
+        /// <param name="bus"></param>
         public CalculationController(ICalculationRequestValidator calculationRequestValidator,
-            ICalculationRepository calculationRepository, IMapper mapper)
+            ICalculationRepository calculationRepository, IMapper mapper, IBus bus)
         {
             _calculationRequestValidator = calculationRequestValidator;
             _calculationRepository = calculationRepository;
             _mapper = mapper;
+            _bus = bus;
         }
 
         ///// <summary>
@@ -105,6 +110,12 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                     // ------------
                     // Add request to queue and let the queue processor handle it.
                     // ...
+                    //var calculationRequestedEvent = new CalculationRequestedEvent
+                    //{
+                    //    TransactionId = transactionId
+                    //};
+                    //_bus.Publish(calculationRequestedEvent);
+                    //Log.Logger.Information("Message broadcasted that calculation is requested: {@message}", calculationRequestedEvent);
 
                     // ------------
                     // Return a response indicating success and with transaction id

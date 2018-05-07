@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculationRepository.cs" />
+    <Compile Include="QueueEvents\CalculationRequestedEvent.cs" />
     <Compile Include="CalculationRequestValidator.cs" />
     <Compile Include="DbContextProvider.cs" />
     <Compile Include="DbContextProviderForTest.cs" />

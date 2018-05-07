@@ -19,12 +19,17 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution
 {
     using Ajf.CoreSolver.Shared;
     using AutoMapper;
+    using EasyNetQ;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 
-    public class DefaultRegistry : Registry {
+
+    public class DefaultRegistry : StructureMap.Registry {
 
         public DefaultRegistry() {
+            var appSettings = new AppSettings();
+            var bus = RabbitHutch.CreateBus(appSettings.EasyNetQConfig);
+
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
@@ -35,11 +40,12 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution
                     scan.AssemblyContainingType<ICalculationRequestValidator>();
                     scan.WithDefaultConventions();
                 });
-            //For<IExample>().Use<Example>();
 
             // Auto mapper config
             For<IMapper>().Use(MapperProvider.GetMapper());
+            
+            For<IBus>().Use(bus);
+            For<IAppSettings>().Use(appSettings);
         }
-
     }
 }

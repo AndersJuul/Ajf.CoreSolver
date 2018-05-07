@@ -7,6 +7,7 @@ using Ajf.CoreSolver.Tests.Base;
 using Ajf.CoreSolver.WebApi.Controllers;
 using Ajf.CoreSolver.WebApi.DependencyResolution;
 using AutoFixture;
+using EasyNetQ;
 using NUnit.Framework;
 using Rhino.Mocks;
 
@@ -23,6 +24,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
             var calculationRequest = Fixture.Create<CalculationRequest>();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
             var calculationRepository = Fixture.Create<ICalculationRepository>();
+            var bus = Fixture.Create<IBus>();
 
             var validationResult = Fixture
                 .Build<ValidationResult>()
@@ -34,7 +36,11 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
                 .Return(validationResult);
             calculationRepository.Stub(x => x.InsertCalculation(calculation));
 
-            var controller = new CalculationController(calculationRequestValidator, calculationRepository,MapperProvider.GetMapper());
+            var controller = new CalculationController(
+                calculationRequestValidator, 
+                calculationRepository,
+                MapperProvider.GetMapper(),
+                bus);
 
             // Act
             var response = controller.Post(calculationRequest);
