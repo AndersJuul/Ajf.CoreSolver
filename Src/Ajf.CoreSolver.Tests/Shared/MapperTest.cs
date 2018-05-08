@@ -13,7 +13,7 @@ namespace Ajf.CoreSolver.Tests.Shared
     public class MapperTest : BaseUnitTest
     {
         [Test]
-        public void ThatValidRequestIsValidated()
+        public void ThatCalculationIsMapped()
         {
             // Arrange
             var sut = MapperProvider.GetMapper();
@@ -23,10 +23,11 @@ namespace Ajf.CoreSolver.Tests.Shared
                 .Create();
 
             // Act
-            var validationResult = sut.Map<CalculationEntity,Calculation >(calculationEntity);
+            var calculation = sut.Map<CalculationEntity,Calculation >(calculationEntity);
 
             // Assert
-            //Assert.IsTrue(validationResult.IsValid);
+            Assert.AreEqual(calculationEntity.TransactionId, calculation.TransactionId);
+            Assert.AreEqual(calculationEntity.CalculationStatus.ToString(), calculation.CalculationStatus.ToString());
         }
     }
 }
