@@ -31,6 +31,9 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution
     [ExcludeFromCodeCoverage]
     public class StructureMapWebApiDependencyScope : StructureMapDependencyScope, IDependencyScope
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public StructureMapWebApiDependencyScope(IContainer container)
             : base(container) {
         }

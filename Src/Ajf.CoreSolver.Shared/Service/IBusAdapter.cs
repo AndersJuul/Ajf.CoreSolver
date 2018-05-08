@@ -1,6 +1,6 @@
 ﻿using EasyNetQ;
 
-namespace Ajf.CoreSolver.Service
+namespace Ajf.CoreSolver.Shared.Service
 {
     public interface IBusAdapter
     {

@@ -7,9 +7,15 @@ using Serilog;
 
 namespace Ajf.CoreSolver.WebApi
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class WebApiApplication : HttpApplication
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Application_Start()
         {
             Log.Logger = StandardLoggerConfigurator

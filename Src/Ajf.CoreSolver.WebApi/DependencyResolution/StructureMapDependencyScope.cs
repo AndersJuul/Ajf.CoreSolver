@@ -39,6 +39,9 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
 
         #region Constructors and Destructors
 
+        /// <summary>
+        /// 
+        /// </summary>
         public StructureMapDependencyScope(IContainer container) {
             if (container == null) {
                 throw new ArgumentNullException("container");
@@ -50,8 +53,14 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
 
         #region Public Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IContainer Container { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IContainer CurrentNestedContainer {
             get {
                 return (IContainer)HttpContext.Items[NestedContainerKey];
@@ -76,6 +85,9 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
 
         #region Public Methods and Operators
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void CreateNestedContainer() {
             if (CurrentNestedContainer != null) {
                 return;
@@ -83,6 +95,9 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
             CurrentNestedContainer = Container.GetNestedContainer();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose() {
             if (CurrentNestedContainer != null) {
                 CurrentNestedContainer.Dispose();
@@ -91,12 +106,18 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
             Container.Dispose();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void DisposeNestedContainer() {
             if (CurrentNestedContainer != null) {
                 CurrentNestedContainer.Dispose();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IEnumerable<object> GetServices(Type serviceType) {
             return DoGetAllInstances(serviceType);
         }
@@ -105,10 +126,16 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override IEnumerable<object> DoGetAllInstances(Type serviceType) {
             return (CurrentNestedContainer ?? Container).GetAllInstances(serviceType).Cast<object>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override object DoGetInstance(Type serviceType, string key) {
             IContainer container = (CurrentNestedContainer ?? Container);
 

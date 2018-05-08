@@ -102,7 +102,7 @@ namespace Ajf.CoreSolver.WebApi.Controllers
                     // Convert the request to internal model, add transaction id and status. 
                     var calculation = _mapper.Map<CalculationRequest, Calculation>(calculationRequest);
                     calculation.TransactionId = transactionId;
-                    calculation.CalculationStatus = CalculationStatus.CalculationQueued;
+                    calculation.CalculationStatus = CalculationStatus.Queued;
 
                     // ------------
                     // Insert the request in database to keep track of calculations

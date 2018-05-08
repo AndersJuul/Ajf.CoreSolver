@@ -24,9 +24,15 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution
     using StructureMap.Graph;
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class DefaultRegistry : StructureMap.Registry {
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DefaultRegistry() {
             var appSettings = new AppSettings();
             var bus = RabbitHutch.CreateBus(appSettings.EasyNetQConfig);
@@ -46,7 +52,7 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution
             For<IMapper>().Use(MapperProvider.GetMapper());
             
             For<IBus>().Use(bus);
-            For<IAppSettings>().Use(appSettings);
+            For<Ajf.CoreSolver.WebApi.IAppSettings>().Use(appSettings);
         }
     }
 }

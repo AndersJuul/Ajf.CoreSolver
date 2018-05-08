@@ -19,7 +19,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             var sut = new CalculationRepository(dbContextProviderForTest, MapperProvider.GetMapper());
             var calculation = Fixture
                 .Build<Calculation>()
-                .With(x=>x.CalculationStatus,CalculationStatus.CalculationQueued)
+                .With(x=>x.CalculationStatus,CalculationStatus.Queued)
                 .Create();
 
             // Act

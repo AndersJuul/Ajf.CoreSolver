@@ -9,5 +9,6 @@ namespace Ajf.CoreSolver.DbModels
         public Guid TransactionId { get; set; }
 
         public CalculationStatusDto CalculationStatus { get; set; }
+        public DateTime LatestUpdate { get; set; }
     }
 }

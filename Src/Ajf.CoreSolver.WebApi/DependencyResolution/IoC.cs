@@ -20,8 +20,14 @@ namespace Ajf.CoreSolver.WebApi.DependencyResolution {
     using StructureMap;
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class IoC {
+        /// <summary>
+        /// 
+        /// </summary>
         public static IContainer Initialize() {
             return new Container(c => c.AddRegistry<DefaultRegistry>());
         }

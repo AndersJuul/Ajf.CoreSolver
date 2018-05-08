@@ -6,9 +6,15 @@ using System.Web.Http;
 
 namespace Ajf.CoreSolver.WebApi
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class WebApiConfig
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services

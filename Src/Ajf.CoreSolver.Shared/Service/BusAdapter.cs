@@ -1,7 +1,7 @@
 ﻿using EasyNetQ;
 using Serilog;
 
-namespace Ajf.CoreSolver.Service
+namespace Ajf.CoreSolver.Shared.Service
 {
     public class BusAdapter : IBusAdapter
     {

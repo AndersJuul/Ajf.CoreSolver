@@ -4,6 +4,7 @@ using Ajf.CoreSolver.DbModels;
 using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.Internal;
 using AutoMapper;
+using Serilog;
 
 namespace Ajf.CoreSolver.Shared
 {
@@ -23,6 +24,7 @@ namespace Ajf.CoreSolver.Shared
         public void InsertCalculation(Calculation calculation)
         {
             var calculationDto = _mapper.Map<Calculation, CalculationEntity>(calculation);
+            calculationDto.LatestUpdate = DateTime.Now;
 
             using (var context = _dbContextProvider.GetDbContext())
             {
@@ -42,9 +44,27 @@ namespace Ajf.CoreSolver.Shared
                         .Single(x => x.TransactionId == transactionId);
 
                 var calculationStatus = _mapper
-                    .Map<CalculationStatusDto,CalculationStatus>(calculationDto.CalculationStatus);
+                    .Map<CalculationStatusDto, CalculationStatus>(calculationDto.CalculationStatus);
 
                 return calculationStatus;
+            }
+        }
+
+        public void SetCalculationStatus(Guid transactionId, CalculationStatus calculationStatus)
+        {
+            var calculationStatusDto = _mapper
+                .Map<CalculationStatus, CalculationStatusDto>(calculationStatus);
+            using (var context = _dbContextProvider.GetDbContext())
+            {
+                Log.Logger.Debug(context.Database.Connection.ConnectionString);
+
+                var calculationDto =
+                    context
+                        .Calculations
+                        .Single(x => x.TransactionId == transactionId);
+                calculationDto.CalculationStatus = calculationStatusDto;
+                calculationDto.LatestUpdate = DateTime.Now;
+                context.SaveChanges();
             }
         }
     }

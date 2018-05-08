@@ -32,20 +32,32 @@ namespace Ajf.CoreSolver.WebApi.App_Start {
     using StructureMap;
     using System.Diagnostics.CodeAnalysis;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [ExcludeFromCodeCoverage]
 	public static class StructuremapMvc {
         #region Public Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static StructureMapDependencyScope StructureMapDependencyScope { get; set; }
 
         #endregion
-		
-		#region Public Methods and Operators
-		
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// 
+        /// </summary>
 		public static void End() {
             StructureMapDependencyScope.Dispose();
         }
-		
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static void Start() {
             IContainer container = IoC.Initialize();
             StructureMapDependencyScope = new StructureMapDependencyScope(container);

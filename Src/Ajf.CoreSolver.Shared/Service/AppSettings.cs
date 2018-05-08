@@ -1,11 +1,8 @@
 ﻿using Ajf.Nuget.Logging;
 
-namespace Ajf.CoreSolver.Service
+namespace Ajf.CoreSolver.Shared.Service
 {
     public class AppSettings : ServiceSettingsFromConfigFile, IAppSettings
     {
-        public AppSettings()
-        {
-        }
     }
 }

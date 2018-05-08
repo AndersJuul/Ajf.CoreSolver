@@ -41,7 +41,7 @@ namespace Ajf.CoreSolver.Shared
                             case CalculationStatusDto.None:
                                 return CalculationStatus.None;
                             case CalculationStatusDto.CalculationQueued:
-                                return CalculationStatus.CalculationQueued;
+                                return CalculationStatus.Queued;
                             default:
                                 throw new ArgumentException("Unknown CalculationStatusDto; couldn't map");
                         }

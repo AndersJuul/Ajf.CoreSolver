@@ -22,8 +22,14 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Ajf.CoreSolver.WebApi.App_Start.StructuremapWebApi), "Start")]
 
 namespace Ajf.CoreSolver.WebApi.App_Start {
+    /// <summary>
+    /// 
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class StructuremapWebApi {
+        /// <summary>
+        /// 
+        /// </summary>
         public static void Start() {
 			var container = StructuremapMvc.StructureMapDependencyScope.Container;
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapWebApiDependencyResolver(container);

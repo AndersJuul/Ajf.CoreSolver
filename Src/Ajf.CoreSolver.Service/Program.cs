@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.Shared.Service;
 using Ajf.Nuget.Logging;
 using Ajf.Nuget.TopShelf;
 using AutoMapper;
@@ -29,21 +26,18 @@ namespace Ajf.CoreSolver.Service
                 s =>
                 {
                     var appSettings = new AppSettings();
-                    //var repository = new Repository(appSettings);
-                    //var subscriptionService = new SubscriptionService(repository);
-                    //var mailSender = new MailSender();
-                    //var radapter = new Radapter(appSettings);
                     IBusAdapter bus = new BusAdapter(appSettings);
-                    //var mailMessageService = new MailMessageService(appSettings, subscriptionService);
 
-                    s.ConstructUsing(name => new Worker(bus, appSettings,
-                        new HandleCalculationRequested(bus, appSettings)
-                        //new HandleSendEmailConfirmingUpload(bus, mailMessageService, mailSender, appSettings),
-                        //new HandleProcessUploadedFileThroughR(bus, appSettings, radapter),
-                        //new HandleSendEmailWithResults(bus, mailMessageService, mailSender, appSettings),
-                        //new HandleUpdateSubscriptionDatabase(subscriptionService)
-                            ));
+                    s.ConstructUsing(name =>
+                    {
+                        var dbContextProvider = new DbContextProvider();
+                        var calculationRepository =
+                            new CalculationRepository(dbContextProvider, MapperProvider.GetMapper());
+                        var handleCalculationRequested =
+                            new HandleCalculationRequested(bus, appSettings, calculationRepository);
 
+                        return new Worker(bus, handleCalculationRequested);
+                    });
                 }))
             {
                 wrapper.Run();

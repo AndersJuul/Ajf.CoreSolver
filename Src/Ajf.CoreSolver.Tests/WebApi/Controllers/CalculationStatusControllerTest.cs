@@ -39,7 +39,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
             var transactionId = Fixture.Create<Guid>();
 
             calculationRepository.Stub(x => x.GetCalculationStatus(transactionId))
-                .Return(CalculationStatus.CalculationQueued);
+                .Return(CalculationStatus.Queued);
 
             var controller = new CalculationStatusController(calculationRepository);
 
@@ -50,7 +50,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
             Assert.IsTrue(result is OkNegotiatedContentResult<CalculationResponse>, result.ToString());
             var calculationResponse = (result as OkNegotiatedContentResult<CalculationResponse>).Content;
             Assert.AreEqual(transactionId, calculationResponse.TransactionId);
-            Assert.AreEqual(CalculationStatus.CalculationQueued, calculationResponse.CalculationStatus);
+            Assert.AreEqual(CalculationStatus.Queued, calculationResponse.CalculationStatus);
         }
     }
 }

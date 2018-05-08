@@ -36,6 +36,9 @@
     <Reference Include="Ajf.Nuget.Logging, Version=1.0.0.77, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Ajf.Nuget.Logging.1.0.0.77\lib\net47\Ajf.Nuget.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Ajf.Nuget.TopShelf, Version=1.0.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ajf.Nuget.TopShelf.1.0.0.10\lib\net47\Ajf.Nuget.TopShelf.dll</HintPath>
+    </Reference>
     <Reference Include="AutoFixture, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.4.2.1\lib\net452\AutoFixture.dll</HintPath>
     </Reference>
@@ -62,6 +65,9 @@
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Polly, Version=6.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.6.0.1\lib\netstandard2.0\Polly.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.2.2.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.2.2\lib\net452\RestSharp.dll</HintPath>

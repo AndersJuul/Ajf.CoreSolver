@@ -1,4 +1,4 @@
-﻿namespace Ajf.CoreSolver.Service
+﻿namespace Ajf.CoreSolver.Shared.Service
 {
     public interface IAppSettings
     {

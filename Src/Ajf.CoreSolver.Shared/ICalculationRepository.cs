@@ -11,5 +11,6 @@ namespace Ajf.CoreSolver.Shared
     {
         void InsertCalculation(Calculation calculation);
         CalculationStatus GetCalculationStatus(Guid transactionId);
+        void SetCalculationStatus(Guid transactionId, CalculationStatus calculationStatus);
     }
 }
