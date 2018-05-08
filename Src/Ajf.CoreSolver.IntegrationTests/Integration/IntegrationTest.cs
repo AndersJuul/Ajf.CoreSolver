@@ -13,7 +13,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
         [Test]
         [Category("Integration")]
         [Timeout(30000)]
-        public void ThatPostingValidCalculationIsSucces()
+        public void ThatPostingValidCalculationIsSuccesful()
         {
             // Arrange
             var client = GetRestClient();
