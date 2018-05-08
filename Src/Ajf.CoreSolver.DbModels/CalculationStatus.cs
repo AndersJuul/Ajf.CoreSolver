@@ -3,6 +3,9 @@
     public enum CalculationStatusDto
     {
         None,
-        CalculationQueued=1
+        Queued=1,
+        InProgress = 2,
+        DoneAndFailed = 3,
+        DoneAndSuccess = 4
     }
 }
