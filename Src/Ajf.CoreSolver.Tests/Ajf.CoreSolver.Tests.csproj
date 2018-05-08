@@ -178,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Shared\BusAdapterTest.cs" />
+    <Compile Include="Shared\HandleCalculationRequestedTest.cs" />
     <Compile Include="Shared\WorkerTest.cs" />
     <Compile Include="Shared\CalculationRequestValidatorTest.cs" />
     <Compile Include="Shared\MapperTest.cs" />
