@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Web.Http;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Shared;
 using Serilog;
 using Serilog.Context;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ajf.CoreSolver.Models
+namespace Ajf.CoreSolver.Models.External
 {
     public class CalculationResponse
     {

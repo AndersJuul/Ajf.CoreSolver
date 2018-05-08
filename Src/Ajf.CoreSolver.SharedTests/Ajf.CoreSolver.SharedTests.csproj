@@ -59,9 +59,16 @@
     <Compile Include="Base\BaseTest.cs" />
     <Compile Include="Base\BaseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ajf.CoreSolver.Models\Ajf.CoreSolver.Models.csproj">
+      <Project>{F657D470-88DB-45CF-8041-2B993DD46FD6}</Project>
+      <Name>Ajf.CoreSolver.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

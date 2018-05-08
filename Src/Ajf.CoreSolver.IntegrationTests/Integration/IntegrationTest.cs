@@ -1,13 +1,8 @@
-﻿using System;
-using System.Net;
-using System.Threading;
+﻿using System.Net;
 using Ajf.CoreSolver.IntegrationTests.Base;
-using Ajf.CoreSolver.Models;
-using Ajf.CoreSolver.Shared;
-using Ajf.CoreSolver.Shared.Service;
-using AutoFixture;
+using Ajf.CoreSolver.Models.External;
+using Ajf.CoreSolver.SharedTests;
 using NUnit.Framework;
-using Polly;
 using RestSharp;
 
 namespace Ajf.CoreSolver.IntegrationTests.Integration
@@ -26,7 +21,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             {
                 RequestFormat = DataFormat.Json
             };
-            requestPost.AddBody(Fixture.Build<CalculationRequest>().Create());
+            requestPost.AddBody(TestDataProvider.GetValidCalculationRequest());
 
             // Act
             var responsePost = client.Execute<CalculationResponse>(requestPost);

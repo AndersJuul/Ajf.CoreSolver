@@ -157,6 +157,7 @@
     <Compile Include="IValidationResult.cs" />
     <Compile Include="MapperProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationItem.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="Service\Worker.cs" />
   </ItemGroup>

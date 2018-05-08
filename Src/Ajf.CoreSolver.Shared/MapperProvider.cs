@@ -19,6 +19,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Ajf.CoreSolver.DbModels;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Models.Internal;
 using AutoMapper;
 

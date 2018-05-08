@@ -45,10 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculationRequest.cs" />
-    <Compile Include="CalculationResponse.cs" />
-    <Compile Include="CalculationStatus.cs" />
-    <Compile Include="CalculationStatusRequest.cs" />
+    <Compile Include="External\CalculationRequest.cs" />
+    <Compile Include="External\CalculationResponse.cs" />
+    <Compile Include="External\CalculationStatus.cs" />
+    <Compile Include="External\CalculationStatusRequest.cs" />
+    <Compile Include="External\Connection.cs" />
+    <Compile Include="External\Unit.cs" />
     <Compile Include="Internal\Calculation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http.Results;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Shared;
 using Ajf.CoreSolver.Tests.Base;
 using Ajf.CoreSolver.WebApi.Controllers;

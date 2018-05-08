@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Web.Http.Results;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.SharedTests;
 using Ajf.CoreSolver.Tests.Base;
+using Ajf.CoreSolver.Tests.Shared;
 using Ajf.CoreSolver.WebApi.Controllers;
 using AutoFixture;
 using EasyNetQ;
@@ -19,7 +22,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
         public void ThatPostingInvalidReturnsBadRequest()
         {
             // Arrange
-            var calculationRequest = Fixture.Create<CalculationRequest>();
+            var calculationRequest =TestDataProvider.GetInvalidCalculationRequest();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
             var calculationRepository = Fixture.Create<ICalculationRepository>();
             var bus = Fixture.Create<IBus>();
@@ -51,7 +54,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
         {
             // Arrange
             var calculation = Fixture.Create<Calculation>();
-            var calculationRequest = Fixture.Create<CalculationRequest>();
+            var calculationRequest =TestDataProvider. GetValidCalculationRequest();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
             var calculationRepository = Fixture.Create<ICalculationRepository>();
             var bus = Fixture.Create<IBus>();
@@ -83,7 +86,7 @@ namespace Ajf.CoreSolver.Tests.WebApi.Controllers
         public void ThatPostingWithResultingExceptionReturnsBadRequest()
         {
             // Arrange
-            var calculationRequest = Fixture.Create<CalculationRequest>();
+            var calculationRequest =TestDataProvider.GetInvalidCalculationRequest();
             var calculationRequestValidator = Fixture.Create<ICalculationRequestValidator>();
             var calculationRepository = Fixture.Create<ICalculationRepository>();
             var bus = Fixture.Create<IBus>();

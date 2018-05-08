@@ -1,5 +1,6 @@
 ﻿using System;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Models.Internal;
 
 namespace Ajf.CoreSolver.Shared

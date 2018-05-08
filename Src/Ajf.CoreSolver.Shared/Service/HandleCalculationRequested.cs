@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Shared.QueueEvents;
 using Serilog;
 using Serilog.Context;

@@ -1,5 +1,6 @@
 ﻿using Ajf.CoreSolver.IntegrationTests.Base;
 using Ajf.CoreSolver.Models;
+using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
 using AutoFixture;

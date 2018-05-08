@@ -1,5 +1,6 @@
-﻿using Ajf.CoreSolver.Models;
+﻿using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.SharedTests;
 using Ajf.CoreSolver.Tests.Base;
 using AutoFixture;
 using NUnit.Framework;
@@ -14,9 +15,7 @@ namespace Ajf.CoreSolver.Tests.Shared
         {
             // Arrange
             var sut = new CalculationRequestValidator();
-            var calculationRequest = Fixture
-                .Build<CalculationRequest>()
-                .Create();
+            var calculationRequest =TestDataProvider.GetValidCalculationRequest();
 
             // Act
             var validationResult = sut.Validate(calculationRequest);
