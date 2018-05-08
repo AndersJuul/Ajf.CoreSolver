@@ -1,6 +1,4 @@
-﻿using Elasticsearch.Net;
-
-namespace Ajf.CoreSolver.Shared
+﻿namespace Ajf.CoreSolver.Shared.Validation
 {
     public interface IValidationResult
     {

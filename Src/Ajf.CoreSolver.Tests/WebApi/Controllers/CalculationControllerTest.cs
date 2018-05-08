@@ -4,6 +4,7 @@ using Ajf.CoreSolver.Models;
 using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.Shared.Validation;
 using Ajf.CoreSolver.SharedTests;
 using Ajf.CoreSolver.Tests.Base;
 using Ajf.CoreSolver.Tests.Shared;

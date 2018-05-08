@@ -15,6 +15,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Ajf.CoreSolver.Shared.Validation;
+
 namespace Ajf.CoreSolver.WebApi.DependencyResolution
 {
     using Ajf.CoreSolver.Shared;

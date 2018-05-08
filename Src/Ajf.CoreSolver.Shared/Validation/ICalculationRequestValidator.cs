@@ -1,7 +1,6 @@
-﻿using Ajf.CoreSolver.Models;
-using Ajf.CoreSolver.Models.External;
+﻿using Ajf.CoreSolver.Models.External;
 
-namespace Ajf.CoreSolver.Shared
+namespace Ajf.CoreSolver.Shared.Validation
 {
     /// <summary>
     /// 

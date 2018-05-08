@@ -1,4 +1,4 @@
-﻿namespace Ajf.CoreSolver.Shared
+﻿namespace Ajf.CoreSolver.Shared.Validation
 {
     public class ValidationResult : IValidationResult
     {

@@ -6,6 +6,7 @@ using Ajf.CoreSolver.Models.External;
 using Ajf.CoreSolver.Models.Internal;
 using Ajf.CoreSolver.Shared;
 using Ajf.CoreSolver.Shared.QueueEvents;
+using Ajf.CoreSolver.Shared.Validation;
 using AutoMapper;
 using EasyNetQ;
 using Serilog;

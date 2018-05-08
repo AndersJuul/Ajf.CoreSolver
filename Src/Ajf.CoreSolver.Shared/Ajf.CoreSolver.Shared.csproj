@@ -148,17 +148,17 @@
     <Compile Include="Service\IBusAdapter.cs" />
     <Compile Include="Service\IHandleCalculationRequested.cs" />
     <Compile Include="QueueEvents\CalculationRequestedEvent.cs" />
-    <Compile Include="CalculationRequestValidator.cs" />
+    <Compile Include="Validation\CalculationRequestValidator.cs" />
     <Compile Include="DbContextProvider.cs" />
     <Compile Include="DbContextProviderForTest.cs" />
     <Compile Include="ICalculationRepository.cs" />
-    <Compile Include="ICalculationRequestValidator.cs" />
+    <Compile Include="Validation\ICalculationRequestValidator.cs" />
     <Compile Include="IDbContextProvider.cs" />
-    <Compile Include="IValidationResult.cs" />
+    <Compile Include="Validation\IValidationResult.cs" />
     <Compile Include="MapperProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidationItem.cs" />
-    <Compile Include="ValidationResult.cs" />
+    <Compile Include="Validation\ValidationItem.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Service\Worker.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,5 +175,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
