@@ -27,6 +27,7 @@ namespace Ajf.CoreSolver.SharedTests
             var calculationRequest = Fixture
                 .Build<CalculationRequest>()
                 .With(x => x.Unit, unit)
+                .With(x=>x.AlgorithmSelector,"COUNTERCLOCKWISE")
                 .Create();
             return calculationRequest;
         }

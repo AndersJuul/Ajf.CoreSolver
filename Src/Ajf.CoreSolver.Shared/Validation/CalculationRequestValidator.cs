@@ -16,37 +16,35 @@ namespace Ajf.CoreSolver.Shared.Validation
                 validationList.Add(
                     new ValidationItem {Level = ValidationLevel.Error, Comment = "Unit must be supplied."});
 
-            if (string.IsNullOrEmpty(calculationRequest.AlgorithmSelector))
+            switch (calculationRequest.AlgorithmSelector)
+            {
+                // Do not accept null or empty
+                case null:
+                case "":
+                    validationList.Add(
+                        new ValidationItem
+                        {
+                            Level = ValidationLevel.Error,
+                            Comment = "Desired algorithm for calculation must be supplied."
+                        });
+                    break;
 
-                switch (calculationRequest.AlgorithmSelector)
-                {
-                    // Do not accept null or empty
-                    case null:
-                    case "":
-                        validationList.Add(
-                            new ValidationItem
-                            {
-                                Level = ValidationLevel.Error,
-                                Comment = "Desired algorithm for calculation must be supplied."
-                            });
-                        break;
+                // Accept these
+                //case "MACRO":
+                //case "CLOCKWISE":
+                    case "COUNTERCLOCKWISE":
+                    break; // Valid
 
-                    // Accept these
-                    //case "MACRO":
-                    case "CLOCKWISE":
-                    //case "COUNTERCLOCKWISE":
-                        break; // Valid
-
-                    // Any other is invalid
-                    default:
-                        validationList.Add(
-                            new ValidationItem
-                            {
-                                Level = ValidationLevel.Error,
-                                Comment = "Desired algorithm for calculation must be supplied."
-                            });
-                        break;
-                }
+                // Any other is invalid
+                default:
+                    validationList.Add(
+                        new ValidationItem
+                        {
+                            Level = ValidationLevel.Error,
+                            Comment = "Desired algorithm for calculation does not match existing."
+                        });
+                    break;
+            }
 
             return new ValidationResult
             {
