@@ -25,10 +25,17 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
 
             // Act
             sut.InsertCalculation(calculation);
-            var retrieved = sut.GetCalculationStatus(calculation.TransactionId);
+            var retrieved1 = sut.GetCalculationStatus(calculation.TransactionId);
 
             // Assert
-            Assert.AreEqual(calculation.CalculationStatus, retrieved);
+            Assert.AreEqual(calculation.CalculationStatus, retrieved1);
+
+            // Act
+            sut.SetCalculationStatus(calculation.TransactionId,CalculationStatus.DoneAndSuccess);
+            var retrieved2 = sut.GetCalculationStatus(calculation.TransactionId);
+
+            // Assert
+            Assert.AreEqual(CalculationStatus.DoneAndSuccess, retrieved2);
         }
     }
 }
