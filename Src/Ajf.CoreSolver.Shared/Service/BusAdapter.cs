@@ -27,5 +27,10 @@ namespace Ajf.CoreSolver.Shared.Service
                 return _bus;
             }
         }
+
+        public void Dispose()
+        {
+            _bus?.Dispose();
+        }
     }
 }

@@ -26,40 +26,45 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             // Arrange
             var calculationRequestValidator = new CalculationRequestValidator();
             var mapper = MapperProvider.GetMapper();
-            var dbContextProvider = new DbContextProviderForTest(ConfigurationManager.ConnectionStrings["CoreSolverConnectionExpress"].ConnectionString);
+            var dbContextProvider = new DbContextProviderForTest(ConfigurationManager
+                .ConnectionStrings["CoreSolverConnectionExpress"].ConnectionString);
             var calculationRepository = new CalculationRepository(dbContextProvider, mapper);
             var appSettings = new AppSettings();
-            var busAdapter = new BusAdapter(appSettings);
-            var bus = busAdapter.Bus;
-
-            var calculationController = new CalculationController(calculationRequestValidator, calculationRepository,mapper,bus );
-
-            var calculationStatusController = new CalculationStatusController(calculationRepository);
-
-            var handleCalculationRequested = new HandleCalculationRequested(busAdapter, appSettings, calculationRepository);
-            var subscriptionResult = bus.SubscribeAsync<CalculationRequestedEvent>(
-                "CalculationRequestedEvent",
-                handleCalculationRequested.Handle);
-
-            var httpActionResult = calculationController.Post(TestDataProvider.GetValidCalculationRequest());
-
-            var okNegotiatedContentResult = httpActionResult as OkNegotiatedContentResult<CalculationResponse>;
-            Assert.IsNotNull(okNegotiatedContentResult);
-            Assert.IsNotNull(okNegotiatedContentResult.Content);
-            do
+            using (var busAdapter = new BusAdapter(appSettings))
             {
-                var actionResult = calculationStatusController.Get(okNegotiatedContentResult.Content.TransactionId);
-                var okNegotiatedContentResult1 = actionResult as OkNegotiatedContentResult<CalculationResponse>;
-                Assert.IsNotNull(okNegotiatedContentResult1);
-                Assert.IsNotNull(okNegotiatedContentResult1.Content);
+                var bus = busAdapter.Bus;
 
-                if (okNegotiatedContentResult1.Content.CalculationStatus == CalculationStatus.DoneAndSuccess)
-                    break;
+                var calculationController =
+                    new CalculationController(calculationRequestValidator, calculationRepository, mapper, bus);
 
-                Thread.Sleep(1000);
-            } while (true);
+                var calculationStatusController = new CalculationStatusController(calculationRepository);
 
-            subscriptionResult.Dispose();
+                var handleCalculationRequested =
+                    new HandleCalculationRequested(busAdapter, appSettings, calculationRepository);
+                var subscriptionResult = bus.SubscribeAsync<CalculationRequestedEvent>(
+                    "CalculationRequestedEvent",
+                    handleCalculationRequested.Handle);
+
+                var httpActionResult = calculationController.Post(TestDataProvider.GetValidCalculationRequest());
+
+                var okNegotiatedContentResult = httpActionResult as OkNegotiatedContentResult<CalculationResponse>;
+                Assert.IsNotNull(okNegotiatedContentResult);
+                Assert.IsNotNull(okNegotiatedContentResult.Content);
+                do
+                {
+                    var actionResult = calculationStatusController.Get(okNegotiatedContentResult.Content.TransactionId);
+                    var okNegotiatedContentResult1 = actionResult as OkNegotiatedContentResult<CalculationResponse>;
+                    Assert.IsNotNull(okNegotiatedContentResult1);
+                    Assert.IsNotNull(okNegotiatedContentResult1.Content);
+
+                    if (okNegotiatedContentResult1.Content.CalculationStatus == CalculationStatus.DoneAndSuccess)
+                        break;
+
+                    Thread.Sleep(1000);
+                } while (true);
+
+                //subscriptionResult.Dispose();
+            }
         }
     }
 }
