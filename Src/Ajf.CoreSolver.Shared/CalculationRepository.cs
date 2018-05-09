@@ -57,7 +57,7 @@ namespace Ajf.CoreSolver.Shared
                 .Map<CalculationStatus, CalculationStatusDto>(calculationStatus);
             using (var context = _dbContextProvider.GetDbContext())
             {
-                Log.Logger.Debug(context.Database.Connection.ConnectionString);
+                Log.Logger.Debug("SetCalculationStatus: " + context.Database.Connection.ConnectionString);
 
                 var calculationDto =
                     context
