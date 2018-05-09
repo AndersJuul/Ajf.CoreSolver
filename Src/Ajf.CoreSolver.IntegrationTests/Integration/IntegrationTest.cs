@@ -63,7 +63,8 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
                 using (var worker = new Worker(busAdapter,
                     handleCalculationRequested))
                 {
-                    if (GetEnv() == Environment.LocalDev) worker.Start();
+                    //if (GetEnv() == Environment.LocalDev)
+                        worker.Start();
 
                     // Assert
                     // Try every second, at most five times
