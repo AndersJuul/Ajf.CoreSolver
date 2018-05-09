@@ -1,6 +1,10 @@
-﻿using System.Net;
+﻿using System.Configuration;
+using System.Net;
+using System.Threading;
 using Ajf.CoreSolver.IntegrationTests.Base;
 using Ajf.CoreSolver.Models.External;
+using Ajf.CoreSolver.Shared;
+using Ajf.CoreSolver.Shared.Service;
 using Ajf.CoreSolver.SharedTests;
 using NUnit.Framework;
 using RestSharp;
@@ -45,28 +49,33 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
             // Note: It is running until disposed, hence we keep the reference though
             // apparently not used.
             // ReSharper disable once NotAccessedVariable
-            //var appSettings = new AppSettings();
-            //var bus = new BusAdapter(appSettings);
+            var appSettings = new AppSettings();
+            var bus = new BusAdapter(appSettings);
 
-            //using (var worker = new Worker(bus,
-            //    new HandleCalculationRequested(bus, appSettings,
-            //        new CalculationRepository(new DbContextProvider(), MapperProvider.GetMapper()))))
-            //{
-            //    if (GetEnv() == Environment.LocalDev) worker.Start();
+            var connectionString = ConfigurationManager.ConnectionStrings["CoreSolverConnectionExpress"].ConnectionString;
 
-            //    // Assert
-            //    // Try every second, at most five times
+            var dbContextProvider = new DbContextProviderForTest(connectionString);
+            var mapper = MapperProvider.GetMapper();
+            var calculationRepository = new CalculationRepository(dbContextProvider, mapper);
+            var handleCalculationRequested = new HandleCalculationRequested(bus, appSettings,calculationRepository);
+            using (var worker = new Worker(bus,
+                handleCalculationRequested))
+            {
+                if (GetEnv() == Environment.LocalDev) worker.Start();
 
-            //    CalculationResponse response;
-            //    do
-            //    {
-            //        var responseCheck = client.Execute<CalculationResponse>(requestGet);
-            //        Assert.AreEqual(HttpStatusCode.OK, responseCheck.StatusCode,
-            //            "Success was expected, got: " + responseCheck);
-            //        response = responseCheck.Data;
-            //        Thread.Sleep(1000);
-            //    } while (response.CalculationStatus!=CalculationStatus.DoneAndSuccess);
-            //}
+                // Assert
+                // Try every second, at most five times
+
+                CalculationResponse response;
+                do
+                {
+                    var responseCheck = client.Execute<CalculationResponse>(requestGet);
+                    Assert.AreEqual(HttpStatusCode.OK, responseCheck.StatusCode,
+                        "Success was expected, got: " + responseCheck);
+                    response = responseCheck.Data;
+                    Thread.Sleep(1000);
+                } while (response.CalculationStatus != CalculationStatus.DoneAndSuccess);
+            }
         }
     }
 }
