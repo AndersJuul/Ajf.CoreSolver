@@ -12,10 +12,18 @@ namespace Ajf.CoreSolver.Shared.Validation
         {
             var validationList = new List<IValidationItem>();
 
-            if (calculationRequest.Unit == null)
-                validationList.Add(
-                    new ValidationItem {Level = ValidationLevel.Error, Comment = "Unit must be supplied."});
+            ValidateUnit(calculationRequest, validationList);
+            ValidateAlgorithmSelector(calculationRequest, validationList);
 
+            return new ValidationResult
+            {
+                IsValid = !validationList.Any(),
+                ValidationItems = validationList.ToArray()
+            };
+        }
+
+        private static void ValidateAlgorithmSelector(CalculationRequest calculationRequest, List<IValidationItem> validationList)
+        {
             switch (calculationRequest.AlgorithmSelector)
             {
                 // Do not accept null or empty
@@ -32,7 +40,7 @@ namespace Ajf.CoreSolver.Shared.Validation
                 // Accept these
                 //case "MACRO":
                 //case "CLOCKWISE":
-                    case "COUNTERCLOCKWISE":
+                case "COUNTERCLOCKWISE":
                     break; // Valid
 
                 // Any other is invalid
@@ -45,12 +53,13 @@ namespace Ajf.CoreSolver.Shared.Validation
                         });
                     break;
             }
+        }
 
-            return new ValidationResult
-            {
-                IsValid = !validationList.Any(),
-                ValidationItems = validationList.ToArray()
-            };
+        private static void ValidateUnit(CalculationRequest calculationRequest, List<IValidationItem> validationList)
+        {
+            if (calculationRequest.Unit == null)
+                validationList.Add(
+                    new ValidationItem {Level = ValidationLevel.Error, Comment = "Unit must be supplied."});
         }
     }
 }
