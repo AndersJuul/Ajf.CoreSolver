@@ -16,7 +16,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
     {
         [Test]
         [Category("Integration")]
-        [Timeout(40000)]
+        [Timeout(60000)]
         public void ThatPostingValidCalculationIsSuccesful()
         {
             // Arrange
