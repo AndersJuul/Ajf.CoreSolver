@@ -161,7 +161,6 @@
     <Compile Include="Base\BaseIntegrationTest.cs" />
     <Compile Include="Base\BaseIntegrationTestWithDb.cs" />
     <Compile Include="Integration\CalculationRepositoryTest.cs" />
-    <Compile Include="Integration\IntegrationTest3.cs" />
     <Compile Include="Integration\IntegrationTest2.cs" />
     <Compile Include="Integration\IntegrationTest.cs" />
     <Compile Include="Base\TestInitializer.cs" />
