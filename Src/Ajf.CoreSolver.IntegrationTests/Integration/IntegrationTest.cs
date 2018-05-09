@@ -14,6 +14,7 @@ namespace Ajf.CoreSolver.IntegrationTests.Integration
     [TestFixture]
     public class IntegrationTest : BaseIntegrationTest
     {
+        [Ignore("temp")]
         [Test]
         [Category("Integration")]
         [Timeout(60000)]
