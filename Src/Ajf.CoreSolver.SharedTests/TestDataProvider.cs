@@ -1,4 +1,5 @@
-﻿using Ajf.CoreSolver.Models.External;
+﻿using System;
+using Ajf.CoreSolver.Models.External;
 using AutoFixture;
 
 namespace Ajf.CoreSolver.SharedTests
@@ -7,27 +8,36 @@ namespace Ajf.CoreSolver.SharedTests
     {
         private static readonly Fixture Fixture = new Fixture();
 
-        public static Unit CreateValidUnit()
+        public static Unit CreateValidRootUnit()
         {
             return Fixture
                 .Build<Unit>()
                 .With(x => x.SubUnits, new[]
                 {
-                    new Unit(),
-                    new Unit(),
-                    new Unit(),
-                    new Unit()
+                    CreateValidUnit(),
+                    CreateValidUnit(),
+                    CreateValidUnit(),
+                    CreateValidUnit()
                 })
+                .Create();
+        }
+
+        public static Unit CreateValidUnit()
+        {
+            return Fixture
+                .Build<Unit>()
+                .With(x => x.Id, Guid.NewGuid())
+                .With(x => x.SubUnits, new Unit[] { })
                 .Create();
         }
 
         public static CalculationRequest GetValidCalculationRequest()
         {
-            var unit = CreateValidUnit();
+            var unit = CreateValidRootUnit();
             var calculationRequest = Fixture
                 .Build<CalculationRequest>()
                 .With(x => x.Unit, unit)
-                .With(x=>x.AlgorithmSelector,"COUNTERCLOCKWISE")
+                .With(x => x.AlgorithmSelector, "COUNTERCLOCKWISE")
                 .Create();
             return calculationRequest;
         }
